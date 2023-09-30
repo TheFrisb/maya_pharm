@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="flex justify-center items-center gap-6">
+        {% for product in products %}
+            <div class="p-4 bg-amber-100">
+                <p class="font-bold">{{ product.title }} - {{ product.status }}</p>
+                <p>{{ product.sale_price }}</p>
+                <button class="addToCartBtn p-4 bg-green-200" data-product-id="{{ product.id }}">Buy</button>
+                <button class="removeCartItem" data-product-id="{{ product.id }}">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <form action="{% url 'checkout' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Submit</button>
+    </form>
+
+    <div>
+        <button id="flushCart">Flush cart</button>
+    </div>
+
+    {% for item in request.cart.items.all %}
+        <p>{{ item.product.title }} - {{ item.quantity }}</p>
+    {% endfor %}
+{% endblock content %}
