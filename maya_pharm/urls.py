@@ -20,6 +20,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")), # Automatically reload browser
+
     path('', include('shop.urls')),
-    path('api/v1/cart/', include('cart.urls'))
+    path('api/v1/cart/', include('cart.urls')),
+    path('shopmanager/', include('shop_manager.urls')),
 ]

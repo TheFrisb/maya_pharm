@@ -17,7 +17,7 @@ def shopHome(request):
         'form': CheckoutForm()
     }
 
-    return render(request, 'shop/home.html', context)
+    return render(request, 'shop/shop.html', context)
 
 
 def flushCart(request):
@@ -43,15 +43,12 @@ def checkout(request):
             new_order.setSubtotalPrice(cartitems_total)
             new_order.setTotalPrice(cartitems_total)
             new_order.save()
-            return redirect('thankYou', new_order.id)
+            return redirect('shop:thankYou', new_order.id)
     else:
-        return redirect('shopHome')
+        return redirect('shop:shopHome')
 
 
 def thank_you(request, pk):
     return HttpResponse('Thank you page')
 
 
-def shopmanager(request):
-    context = {}
-    return render(request, 'shop/shopmanager.html', context)

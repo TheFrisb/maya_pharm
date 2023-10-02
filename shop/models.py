@@ -24,7 +24,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('Processing', 'Processing'),
+        ('Pending', 'Processing'),
         ('Paid', 'Paid'),
     )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
@@ -33,6 +33,7 @@ class Order(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     shipping_address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255, default="Strumica")
     phone_number = models.CharField(max_length=15)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -57,6 +58,9 @@ class Order(models.Model):
     def setTotalPrice(self, total):
         self.total_price = total
 
+    def getFullName(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
@@ -77,3 +81,6 @@ class OrderItem(models.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    def details(self):
+        return f'{self.product.title} x {self.quantity} - {self.price} ден'

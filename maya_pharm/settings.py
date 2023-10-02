@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'cart',
+
     'shop',
+    'cart',
+    'shop_manager',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ if DEBUG:
 
 
 ROOT_URLCONF = 'maya_pharm.urls'
+DJANGO_APPEND_SLASH = True
 
 TEMPLATES = [
     {
@@ -134,3 +136,4 @@ STATICFILES_DIRS = [BASE_DIR / "static/"]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

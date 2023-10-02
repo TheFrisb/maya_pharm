@@ -6,7 +6,16 @@ module.exports = {
       "./static/**/js/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+        colors: {
+            'dashboard-blue': "#4759E4",
+            'dashboard-item-active': "#95A1FF",
+            'dashboard-gray': "#F8FAFF"
+        },
+        gridTemplateColumns: {
+            'dashboard-template': '300px 1fr'
+        }
+    },
   },
   plugins: [],
 }
