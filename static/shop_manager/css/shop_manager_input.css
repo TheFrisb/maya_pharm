@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.sidebar-item{
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+    @apply py-2;
+    @apply px-4;
+    @apply rounded-lg;
+    @apply cursor-pointer;
+}
+.sidebar-item.active{
+    @apply rounded-br-none;
+    @apply rounded-bl-none;
+    @apply bg-dashboard-item-active;
+    @apply text-white;
+}
+.sidebar-item-title{
+    @apply flex;
+    @apply items-center;
+    @apply gap-2;
+}
+.sidebar-item-content{
+    @apply flex;
+    @apply flex-col;
+    @apply items-start;
+    @apply justify-between;
+    @apply py-2;
+    @apply px-4;
+    @apply rounded-bl-lg;
+    @apply rounded-br-lg;
+    @apply bg-dashboard-item-active/30;
+    @apply cursor-pointer;
+}
+.sidebar-item-content-title{
+    @apply flex;
+    @apply items-center;
+    @apply gap-2;
+    @apply text-white/80;
+    @apply hover:text-white;
+    @apply py-2;
+}
+.table_field{
+    @apply py-2;
+}
