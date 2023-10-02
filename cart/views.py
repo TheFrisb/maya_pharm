@@ -1,43 +1,82 @@
-from rest_framework import views
-from .serializers import CartItemSerializer, CartSerializer, ProductSerializer
-from .utils import create_error_response, create_success_response
+import json
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+from .forms import CartItemForm, UpdateCartItemForm
 
 
-class CartView(views.APIView):
+# Create your views here.
+@require_http_methods(['POST'])
+def addToCart(request):
+    try:
+        form = CartItemForm(json.loads(request.body))
+    except json.JSONDecodeError:
+        return JsonResponse(data={
+            'success': 'error',
+            'message': 'Expected contentType: "application/json"'
+        }, status=400)
+    if form.is_valid():
+        cart = request.cart
+        product = form.cleaned_data['product']
+        quantity = form.cleaned_data['quantity']
+        if not quantity:
+            cart_item = cart.add_product(product)
+        else:
+            cart_item = cart.add_product(product, quantity)
 
-    def post(self, request, *args, **kwargs):
-        # Add to cart
-        serializer = CartItemSerializer(data=request.data)
-        if serializer.is_valid():
-            product = serializer.validated_data['product']
-            quantity = serializer.validated_data['quantity']
-            cart = request.cart
+        return JsonResponse(data={
+            'success': 'success',
+            'message': "Product added to cart",
+            'cart': cart.as_dict(),
+            'cartItem': cart_item.as_dict()
+        }, status=200)
 
-            cart.add_product(product, quantity)
-            return create_success_response(CartSerializer(cart).data, "Product added to cart")
-        return create_error_response(serializer.errors)
+    else:
+        return JsonResponse({
+            'success': 'error',
+            'errors': form.errors
+        }, status=400)
 
-    def put(self, request, *args, **kwargs):
-        # Update cart item
-        serializer = CartItemSerializer(data=request.data)
-        if serializer.is_valid():
-            product = serializer.validated_data['product']
-            quantity = serializer.validated_data['quantity']
-            cart = request.cart
 
-            cart.update_product(product, quantity)
-            return create_success_response(CartSerializer(cart).data, "Product updated in cart")
-        return create_error_response(serializer.errors)
+@require_http_methods(['POST'])
+def removeFromCart(request):
+    form = CartItemForm(request.body)
 
-    def delete(self, request, *args, **kwargs):
-        # Remove from cart
-        serializer = ProductSerializer(data=request.data)
-        if serializer.is_valid():
-            product = serializer.validated_data.get('product')
-            if not product:
-                return create_error_response({'success': 'error', 'errors': 'No such product exists'})
-            cart = request.cart
+    if form.is_valid():
+        cart = request.cart
+        cart.remove_product(form.cleaned_data['product'])
+        return JsonResponse(data={
+            'success': 'success',
+            'message': "Product removed from cart",
+            'cart': cart.as_dict(),
+        }, status=200)
 
-            cart.remove_product(product)
-            return create_success_response(CartSerializer(cart).data, "Product removed from cart")
-        return create_error_response(serializer.errors)
+    else:
+        return JsonResponse({
+            'success': 'error',
+            'errors': form.errors
+        }, status=400)
+
+
+@require_http_methods(['POST'])
+def updateCartItem(request):
+    form = UpdateCartItemForm(request.body)
+
+    if form.is_valid():
+        cart = request.cart
+        product = form.cleaned_data['product']
+        quantity = form.cleaned_data['quantity']
+
+        cart.update_product(product, quantity)
+
+        return JsonResponse(data={
+            'success': 'success',
+            'message': "Product updated in cart",
+            'cart': cart.as_dict(),
+        }, status=200)
+
+
+    else:
+        return JsonResponse({
+            'success': 'error',
+            'errors': form.errors
+        }, status=400)

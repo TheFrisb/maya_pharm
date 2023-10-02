@@ -11,7 +11,7 @@
             </div>
         {% endfor %}
     </div>
-    <form action="{% url 'checkout' %}" method="post">
+    <form action="{% url 'shop:checkout' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button>Submit</button>

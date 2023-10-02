@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "npx tailwindcss -i ./static/shop/css/shop_input.css -o ./static/shop/css/shop_output.css --watch"
+    "dev": "npx tailwindcss -i ./static/shop_manager/css/shop_manager_input.css -o ./static/shop_manager/css/shop_manager_output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.3"
