@@ -5,22 +5,56 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                             <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
                         </svg>
-                        <h4 class="font-bold">Непотврдени порачки</h4>
+                        <h4 class="font-bold">{{ title }}</h4>
                     </div>
                     <div>
-                        <p>admin</p>
+                        <p>{{ request.user.username }}</p>
                     </div>
         </div>
         <div class="py-4 px-8 flex flex-col items-start gap-4">
-            <h4>Orders</h4>
-            <div class="p-4 w-full bg-white rounded-xl shadow-md flex flex-col gap-4">
+            <div class="p-4 w-full bg-white rounded-xl shadow-md flex flex-col gap-4 ">
                 <div class="flex items-center justify-between">
                     <h4 class="text-xl font-bold">Порачки</h4>
                     <div class="flex items-center gap-1">
-                        <a href="">1</a>
-                        <a href="">2</a>
-                        <p>...</p>
-                        <a href="">10</a>
+
+                        {% if page_obj.has_previous %}
+                          <a href="?page={{ page_obj.previous_page_number }}" class="paginator-arrow">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                              </svg>
+                          </a>
+
+                          {% if page_obj.number > 3 %}
+                            <a href="?page=1" class="paginator-number">1</a>
+                            {% if page_obj.number > 4 %}
+                              <span>...</span>
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                          {% if page_obj.number == num %}
+                            <a href="?page={{ num }}" class="paginator-number active">{{ num }}</a>
+                          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a href="?page={{ num }}" class="paginator-number">{{ num }}</a>
+                          {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                          {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                            <span>...</span>
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
+                          {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
+                          {% endif %}
+
+                          <a href="?page={{ page_obj.next_page_number }}" class="paginator-arrow">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                          </a>
+                        {% endif %}
+
                     </div>
                 </div>
                 <table class="table-auto w-full text-left">
@@ -32,7 +66,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for order in orders %}
+                        {% for order in page_obj %}
                           <tr class="border-b-2 border-gray-200">
                               <td class="table_field">
                                   {{ order.getFullName }}
@@ -56,8 +90,8 @@
                               </td>
                               <td class="table_field flex flex-col items-start grow justify-between gap-1">
                                   <p>{{ order.status }}</p>
-                                  <button class="py-1.5 px-4 bg-dashboard-blue text-white rounded-lg text-sm font-bold">ПОТВРДИ</button>
-                                  <button class="py-1.5 px-4 bg-black/20 rounded-lg text-sm font-bold">ОТСТРАНИ</button>
+                                  <button class="py-1.5 px-4 bg-dashboard-blue text-white rounded-lg text-sm font-bold w-full max-w-[120px] confirmOrderBtn" data-order-id="{{ order.id }}">ПОТВРДИ</button>
+                                  <button class="py-1.5 px-4 bg-black/20 rounded-lg text-sm font-bold w-full max-w-[120px] deleteOrderBtn" data-order-id="{{ order.id }}">ОТСТРАНИ</button>
                               </td>
 
                             </tr>

@@ -1,3 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider-arrow{
+    @apply bg-white;
+    @apply border-2;
+    @apply border-black;
+    @apply rounded;
+    @apply py-4;
+    @apply px-1;
+    @apply absolute;
+    @apply top-2/4;
+    @apply transform;
+    @apply -translate-y-1/2;
+    @apply ml-auto;
+    @apply z-50;
+}
+.slider-arrow.prev{
+    @apply left-1.5;
+}
+.slider-arrow.next{
+    @apply right-1.5;
+}
+.slider-Div{
+    @apply m-2.5;
+}
+.slider-Div img{
+    @apply w-full;
+}
+
+#checkoutForm label{
+    @apply block;
+    @apply text-sm;
+    @apply mb-0.5;
+}
+#checkoutForm .checkoutInput{
+    @apply h-12;
+    @apply px-4;
+    @apply border-2;
+    @apply rounded;
+    @apply w-full;
+}
+#checkoutForm p{
+    @apply mb-3;
+}
+#checkoutForm .errorlist{
+    @apply pt-2.5;
+    @apply text-xs;
+    @apply font-semibold;
+    @apply text-error;
+}
+.checkoutInput.error{
+    @apply border-error;
+}
+#checkoutForm #id_payment_method > div{
+    @apply p-4;
+    @apply border-2;
+    @apply rounded;
+    @apply mb-3;
+    @apply cursor-pointer;
+}
+#checkoutForm #id_payment_method > div > label{
+    @apply m-0;
+    @apply cursor-pointer;
+}
