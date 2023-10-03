@@ -7,7 +7,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'shop/css/shop_output.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slick_slider.css' %}">
     <title>Document</title>
+
 </head>
 <body>
     {% csrf_token %}
@@ -16,7 +18,9 @@
     {% include 'shop/includes/footer.html' %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{% static 'assets/js/slick.js' %}"></script>
     <script src="{% static 'shop/js/shop.js' %}"></script>
+    <script src="{% static 'shop/js/sliders.js' %}"></script>
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>

@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% load static %}
+{% url 'shop:checkout' as checkout_url %}
+{% if request.path == checkout_url %}
+    <div class="w-full border-b-2 border-brand-gray">
+        <div class="container mx-auto p-4">
+            <img src="{% static 'assets/images/logo_long.png' %}" alt="Image of a logo" width="120" >
+        </div>
+    </div>
+{% else %}
+    <div id="header" class="bg-brand-gray">
+        <div class="border-b-2 border-brand-gray">
+            <div class="container mx-auto">
+                <div class="py-6 flex items-center justify-between">
+                    <div class="basis-[90%] flex items-center justify-center">
+                        <img src="{% static 'assets/images/logo_long.png' %}" alt="" class="w-36">
+                    </div>
+                    <div class="flex items-center justify-center relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" id="cartIcon">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                        <span class="w-4 h-4 text-center text-xs font-bold top-[-6px] right-[-6px] absolute bg-orange-700 text-white rounded-xl">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="bg-[#55A04F]">
+                <div class="container mx-auto text-white">
+                    <div class="flex items-center justify-center">
+                        <a href="#" class="p-2 font-bold text-sm">Почетна</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 1</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 2</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 3</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 4</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 5</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 6</a>
+                        <a href="#" class="p-2 font-bold text-sm">Категорија 7</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endif %}

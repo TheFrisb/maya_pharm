@@ -24,10 +24,11 @@ class Product(models.Model):
 
 class Order(models.Model):
     STATUS_CHOICES = (
-        ('Pending', 'Processing'),
-        ('Paid', 'Paid'),
+        ('pending', 'Processing'),
+        ('confirmed', 'Confirmed'),
+        ('deleted', 'Deleted')
     )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     subtotal_price = models.IntegerField(default=0)
     total_price = models.IntegerField(default=0)
     first_name = models.CharField(max_length=50)
@@ -60,6 +61,18 @@ class Order(models.Model):
 
     def getFullName(self):
         return f'{self.first_name} {self.last_name}'
+
+    def set_to_confirm(self):
+        self.status = 'confirmed'
+        self.save()
+
+    def set_to_deleted(self):
+        self.status = 'deleted'
+        self.save()
+
+    def set_to_pending(self):
+        self.status = 'pending'
+        self.save()
 
 
 class OrderItem(models.Model):
