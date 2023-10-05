@@ -1,19 +1,19 @@
 $(document).ready(function(){
-    const sliderPrevArrowTemplate = `<button type="button" class="slider-arrow prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                                </svg>
-                                </button>`
+    const sliderPrevArrowTemplate = `<button class="slider-arrow prev">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+        </button>`
     const sliderNextArrowTemplate = `<button type="button" class="slider-arrow next">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                                 </svg>
                                 </button>`
 
 
     $('.slider-4').slick({
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         prevArrow: sliderPrevArrowTemplate,
         nextArrow: sliderNextArrowTemplate,
@@ -21,21 +21,14 @@ $(document).ready(function(){
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 2,
+                slidesToScroll: 1,
                 infinite: true,
                 dots: true
               }
             },
             {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-              }
-            },
-            {
-              breakpoint: 480,
+              breakpoint: 768,
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1
@@ -51,5 +44,25 @@ $(document).ready(function(){
         slidesToScroll: 1,
         prevArrow: sliderPrevArrowTemplate,
         nextArrow: sliderNextArrowTemplate,
+
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            }
+
+          ]
     });
 })
