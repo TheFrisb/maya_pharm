@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from .models import Product, Order
-from cart.models import CartItem
 from .forms import CheckoutForm
 
 
 # Create your views here.
-def shopHome(request):
+def shop_home(request):
     if request.cart:
         print("VIEW HAS CART")
     else:
@@ -19,9 +18,12 @@ def shopHome(request):
     return render(request, 'shop/shop.html', context)
 
 
+def product_page(request):
+    context = {}
+    return render(request, 'shop/product_page.html', context)
+
+
 def checkout(request):
-
-
     if request.method == 'POST':
         post_form = CheckoutForm(request.POST)
         if not post_form.is_valid():
@@ -42,7 +44,7 @@ def checkout(request):
         new_order.setSubtotalPrice(cartitems_total)
         new_order.setTotalPrice(cartitems_total)
         new_order.save()
-        return redirect('shop:thankYou', new_order.id)
+        return redirect('shop:thank_you', new_order.id)
 
     else:
         form = CheckoutForm()
@@ -54,5 +56,3 @@ def checkout(request):
 
 def thank_you(request, pk):
     return HttpResponse('Thank you page')
-
-
