@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 .slider-arrow{
-    @apply bg-white;
-    @apply border-2;
-    @apply border-black;
-    @apply rounded;
     @apply py-4;
     @apply px-1;
     @apply absolute;
@@ -15,12 +11,13 @@
     @apply -translate-y-1/2;
     @apply ml-auto;
     @apply z-50;
+    @apply text-black;
 }
 .slider-arrow.prev{
-    @apply left-1.5;
+    @apply left-[-10px];
 }
 .slider-arrow.next{
-    @apply right-1.5;
+    @apply right-[-10px];
 }
 .slider-Div{
     @apply m-2.5;
@@ -63,4 +60,52 @@
 #checkoutForm #id_payment_method > div > label{
     @apply m-0;
     @apply cursor-pointer;
+}
+
+
+.slider-img{
+    @apply rounded-lg;
+}
+.slider-product-list{
+    @apply p-4;
+    @apply rounded-lg;
+    @apply bg-white;
+    @apply shadow;
+}
+.slider-category-list{
+    @apply p-2;
+}
+.slider-category-list img{
+        @apply shadow;
+}
+.sliderShowcase{
+    @apply shadow;
+    @apply rounded-lg;
+}
+.sliderShowcase img {
+    @apply w-full;
+    @apply rounded-lg;
+}
+.slider-product-list .slider-item-title{
+    @apply text-ellipsis;
+    @apply text-brand-secondary;
+    @apply mb-4;
+    @apply font-semibold;
+    @apply line-clamp-2;
+}
+.slider-product-list .addToCartBtn{
+    @apply p-2;
+    @apply text-xs;
+    @apply text-white;
+    @apply bg-brand-primary;
+    @apply font-bold;
+    @apply w-full;
+    @apply rounded-lg;
+}
+.slider-category-list .slider-item-title{
+    @apply mt-2;
+    @apply truncate;
+    @apply text-ellipsis;
+    @apply text-brand-secondary;
+    @apply font-semibold;
 }

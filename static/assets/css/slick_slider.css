@@ -40,6 +40,7 @@
     border: none;
     outline: none;
     background: transparent;
+    border-radius:50%;
 }
 .slick-prev:hover,
 .slick-prev:focus,

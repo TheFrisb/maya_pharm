@@ -13,6 +13,10 @@ module.exports = {
             'dashboard-gray': "#F8FAFF",
             'brand-gray': "#F8FAFF",
             'error': '#FF0000',
+
+            'brand-primary': "#21872f",
+            'brand-secondary': "#17335E",
+            'brand-tertiary': "#53175E"
         },
         gridTemplateColumns: {
             'dashboard-template': '300px 1fr',
@@ -20,7 +24,10 @@ module.exports = {
             'checkout-template-3': 'minmax(0, 1fr) minmax(0, 61rem) minmax(0, 1fr)',
             'checkout-template-4': 'minmax(0, 1fr) minmax(0, 65rem) minmax(0, 45.5rem) minmax(0, 1fr)',
             'checkout-template-1': 'minmax(0, 1fr)',
-        }
+        },
+        fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif']
+      }
     },
   },
   plugins: [],
