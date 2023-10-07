@@ -13,7 +13,7 @@ module.exports = {
             'dashboard-gray': "#F8FAFF",
             'brand-gray': "#F8FAFF",
             'error': '#FF0000',
-
+            'brand-yellow': "#F0DA1F",
             'brand-primary': "#21872f",
             'brand-secondary': "#17335E",
             'brand-tertiary': "#53175E"

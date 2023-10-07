@@ -23,6 +23,10 @@ def product_page(request):
     return render(request, 'shop/product_page.html', context)
 
 
+def category_page(request):
+    context = {}
+    return render(request, 'shop/category_page.html', context)
+
 def checkout(request):
     if request.method == 'POST':
         post_form = CheckoutForm(request.POST)
@@ -54,5 +58,5 @@ def checkout(request):
         return render(request, 'shop/checkout.html', context)
 
 
-def thank_you(request, pk):
+def thank_you_page(request, pk):
     return HttpResponse('Thank you page')

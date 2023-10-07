@@ -2,27 +2,28 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full grid grid-cols-checkout-template-4 ">
-    <div></div>
-    <div class="p-10 min-h-screen border-r-2 border-brand-gray">
-        <form action="{% url 'shop:checkout' %}" method="post" id="checkoutForm">
+<div class="w-full flex items-start">
+    <div class="p-10 min-h-screen border-r-2 border-brand-gray basis-[60%]">
+        <form action="{% url 'shop:checkout' %}" method="post" id="checkoutForm" class="ml-auto w-8/12">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="w-full bg-green-600 p-3 rounded text-white">Submit</button>
+            <button type="submit" class="w-full bg-brand-primary font-semibold p-3 rounded text-white">Submit</button>
         </form>
     </div>
-    <div class="p-10 bg-[#FAFAFA] min-h-screen">
+    <div class="p-10 bg-[#FAFAFA] min-h-screen basis-[40%]">
 
-            <div class="flex flex-col gap-4 mb-6">
+            <div class="mr-auto w-8/12">
+                <div class="flex flex-col gap-4 mb-6">
                 {% for cartItem in request.cart.items.all %}
-                <div class="flex items-center justify-around">
-                    <div class="relative basis-3/12">
-                        <img src="https://cdn.shopify.com/s/files/1/0507/3066/4089/products/cdfdc10012bf37b6b1d2c184a0030ce4_64x64.jpg?v=1638213092" alt="" class="w-full rounded border-2 border-gray-300">
-                        <span class="w-4 h-4 text-center text-xs font-bold top-[-6px] right-[-6px] absolute bg-orange-700 text-white rounded-xl">{{ cartItem.quantity }}</span>
+                    <div class="flex gap-2 items-center border-b-2 ">
+                        <img src="https://outleton.com/cdn/shop/products/b58d1e3079be145f701202556d8dfd1f_120x.jpg?v=1621270157" alt="">
+                        <div class="">
+                            <p class="font-semibold">Lorem ipsum dolor sit.</p>
+                            <p class="font-semibold text-brand-primary mt-2">1 x 123 ден</p>
+                        </div>
                     </div>
-                    <p class="basis-6/12 break-words">{{ cartItem.product.title }}</p>
-                    <p>{{ cartItem.get_total_price }} ден</p>
-                </div>
+
+
                 {% endfor %}
             </div>
             <div class="flex flex-col gap-2">
@@ -36,12 +37,12 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <p class="text-lg">Вкупно</p>
-                    <p class="font-bold text-xl">{{ request.cart.get_cart_total }} ден</p>
+                    <p class="font-bold text-xl text-brand-primary">{{ request.cart.get_cart_total }} ден</p>
                 </div>
+            </div>
             </div>
 
     </div>
-    <div></div>
 </div>
 
 

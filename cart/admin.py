@@ -6,3 +6,5 @@ from .models import Cart, CartItem
 @admin.register(Cart)
 class ModelNameAdmin(admin.ModelAdmin):
     pass
+
+admin.site.register(CartItem)

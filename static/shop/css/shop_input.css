@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number'] {
+          -webkit-appearance: none;
+          margin: 0;
+          -moz-appearance: textfield !important;
+        }
+     }
+
 
 .slider-arrow{
     @apply py-4;
@@ -14,31 +24,33 @@
     @apply text-black;
 }
 .slider-arrow.prev{
-    @apply left-[-10px];
+    @apply lg:left-[-10px];
+    @apply left-0;
 }
 .slider-arrow.next{
-    @apply right-[-10px];
+    @apply lg:right-[-10px];
+    @apply right-0;
 }
 .slider-Div{
     @apply m-2.5;
 }
-.slider-Div img{
-    @apply w-full;
-}
+
 
 #checkoutForm label{
     @apply block;
     @apply text-sm;
+    @apply font-medium;
     @apply mb-0.5;
 }
 #checkoutForm .checkoutInput{
     @apply h-12;
     @apply px-4;
     @apply border-2;
-    @apply rounded;
+    @apply rounded-lg;
     @apply w-full;
+    @apply focus:outline-brand-primary;
 }
-#checkoutForm p{
+#checkoutForm input[type="text"]{
     @apply mb-3;
 }
 #checkoutForm .errorlist{
@@ -50,23 +62,24 @@
 .checkoutInput.error{
     @apply border-error;
 }
-#checkoutForm #id_payment_method > div{
-    @apply p-4;
-    @apply border-2;
-    @apply rounded;
-    @apply mb-3;
-    @apply cursor-pointer;
-}
+
 #checkoutForm #id_payment_method > div > label{
     @apply m-0;
     @apply cursor-pointer;
+    @apply font-medium;
+    @apply p-4;
+    @apply border-2;
+    @apply rounded-lg;
+    @apply mb-3;
+    @apply cursor-pointer;
+    @apply bg-white;
 }
 
 
-.slider-img{
+.product-card-image{
     @apply rounded-lg;
 }
-.slider-product-list{
+.product-card{
     @apply p-4;
     @apply rounded-lg;
     @apply bg-white;
@@ -86,23 +99,23 @@
     @apply w-full;
     @apply rounded-lg;
 }
-.slider-product-list .slider-item-title{
+.product-card .product-card-title{
     @apply text-ellipsis;
     @apply text-brand-secondary;
     @apply mb-4;
     @apply font-semibold;
     @apply line-clamp-2;
 }
-.slider-product-list .addToCartBtn{
+.product-card .addToCartBtn{
     @apply p-2;
-    @apply text-xs;
+    @apply text-sm;
     @apply text-white;
     @apply bg-brand-primary;
     @apply font-bold;
     @apply w-full;
     @apply rounded-lg;
 }
-.slider-category-list .slider-item-title{
+.slider-category-list .product-card-title{
     @apply mt-2;
     @apply truncate;
     @apply text-ellipsis;
