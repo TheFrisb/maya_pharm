@@ -11,7 +11,7 @@ $(document).ready(function(){
                                 </button>`
 
 
-    $('.slider-4').slick({
+    $('.slider-3').slick({
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -38,18 +38,48 @@ $(document).ready(function(){
           ]
     });
 
-    $('.slider-8').slick({
+    $('.slider-4').slick({
         infinite: true,
-        slidesToShow: 6,
+        slidesToShow: 4,
         slidesToScroll: 1,
         prevArrow: sliderPrevArrowTemplate,
         nextArrow: sliderNextArrowTemplate,
+        dots: false,
 
         responsive: [
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 6,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            }
+
+          ]
+    });
+
+    $('.slider-6').slick({
+        infinite: true,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        prevArrow: sliderPrevArrowTemplate,
+        nextArrow: sliderNextArrowTemplate,
+        dots: false,
+
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 infinite: true,
                 dots: true
