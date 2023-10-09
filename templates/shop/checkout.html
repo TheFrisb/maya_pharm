@@ -15,11 +15,11 @@
             <div class="mr-auto w-8/12">
                 <div class="flex flex-col gap-4 mb-6">
                 {% for cartItem in request.cart.items.all %}
-                    <div class="flex gap-2 items-center border-b-2 ">
-                        <img src="https://outleton.com/cdn/shop/products/b58d1e3079be145f701202556d8dfd1f_120x.jpg?v=1621270157" alt="">
+                    <div class="flex gap-2 items-center border-b-2 py-2">
+                        <img src="http://127.0.0.1:8000/media/products/2023/10/08/square_jpg.jpg" alt="" style="max-width:120px">
                         <div class="">
                             <p class="font-semibold">Lorem ipsum dolor sit.</p>
-                            <p class="font-semibold text-brand-primary mt-2">1 x 123 ден</p>
+                            <p class="font-semibold text-brand-primary mt-2">4 x 599     ден</p>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <p class="">Цена</p>
-                    <p class="font-semibold">{{ request.cart.get_cart_total }} ден</p>
+                    <p class="font-semibold">2396 ден</p>
                 </div>
                 <div class="flex items-center justify-between">
                     <p class="">Достава</p>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <p class="text-lg">Вкупно</p>
-                    <p class="font-bold text-xl text-brand-primary">{{ request.cart.get_cart_total }} ден</p>
+                    <p class="font-bold text-xl text-brand-primary">2396 ден</p>
                 </div>
             </div>
             </div>

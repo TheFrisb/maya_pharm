@@ -10,4 +10,5 @@ urlpatterns = [
     path('api/confirm-order/', api_views.confirmOrder),
     path('api/delete-order/', api_views.deleteOrder),
     path('api/restore-order/', api_views.restoreOrder),
+    path('api/export-orders/', api_views.order_export),
 ]

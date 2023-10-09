@@ -1,19 +1,19 @@
 {% load static %}
 {% url 'shop:checkout' as checkout_url %}
 {% if request.path == checkout_url %}
-    <div class="w-full border-b-2 bg-brand-tertiary ">
+    <div class="w-full border-b-2 bg-gray-300/70 ">
         <div class="container mx-auto p-4">
             <div class="flex items-center justify-start relative gap-2 mb-2">
                     <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
                     <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                        <p class="text-2xl font-bold text-brand-yellow">Maja Farm</p>
-                        <p class="text-sm italic font-medium text-brand-yellow text-center relative top-[-1px]">Smart pharmacy</p>
+                        <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
+                        <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар на вашето здравје</p>
                     </div>
             </div>
         </div>
     </div>
 {% else %}
-    <div id="header" class=" bg-brand-tertiary py-6">
+    <div id="header" class="bg-gray-300/70 py-6">
         <div class="container mx-auto w-full flex items-center justify-between">
             <div>
                 <img src="{% static 'assets/images/pharma_logo.png' %}" alt="" class="max-w-[80px]">
@@ -22,8 +22,8 @@
                 <div class="flex items-center justify-start relative gap-2 mb-2">
                     <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
                     <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                        <p class="text-2xl font-bold text-brand-yellow">Maja Farm</p>
-                        <p class="text-sm italic font-medium text-brand-yellow text-center relative top-[-1px]">Smart pharmacy</p>
+                        <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
+                        <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар на вашето здравје</p>
                     </div>
                 </div>
                 <div class="flex items-center w-8/12 justify-center">
@@ -35,93 +35,170 @@
                     <input type="text" name="searchInput" class="h-[56px] rounded-r grow max-w-xl" id="searchInput">
                 </div>
             </div>
-            <div class="flex items-center justify-center relative">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28   " height="28" fill="currentColor" class="text-brand-yellow" viewBox="0 0 16 16">
+            <div class="flex items-center justify-center relative cursor-pointer" id="cartIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-brand-primary" viewBox="0 0 16 16">
                   <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
                 </svg>
-                <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl">0</span>
+                <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl" id="cartQuantityContainer">0</span>
             </div>
         </div>
     </div>
 <div class="bg-brand-secondary">
     <div class="container mx-auto text-white">
         <div class="flex items-center justify-center">
+            {% for category in categories %}
             <div class="p-2 font-bold text-sm group relative">
-                <a href="#" class="">Lorem.</a>
-                <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-brand-tertiary rounded-bl-lg rounded-br-lg">
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
+                <a href="#" class="">{{ category.name }}</a>
+                {% if category.subcategories.all %}
+                <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-brand-tertiary rounded-bl-lg rounded-br-lg z-[100]">
+                    {% for subcategory in category.subcategories.all %}
+                     <div class="py-2 cursor-pointer flex items-center justify-between">
+                        <a href="#">{{ subcategory.name }}</a>
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                         </svg>
                     </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum.</a>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum dolor.</a>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum.</a>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum.</a>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum.</a>
-            <a href="#" class="p-2 font-bold text-sm">Lorem ipsum.</a>
-            <div class="p-2 font-bold text-sm group relative">
-                <a href="#" class="">Lorem.</a>
-                <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-brand-tertiary rounded-bl-lg rounded-br-lg">
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <div class="py-2 cursor-pointer flex items-center justify-between">
-                        <a href="#">Lorem ipsum.</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid w-full h-full overflow-hidden absolute top-0 right-0 bg-black/70 z-[100]" id="overlay" style="display:none!important;"></div>
+<div class="absolute top-0 right-0 bg-white w-4/12 xl:w-2/12 h-full flex flex-col  ml-auto shadow-2xl shadow-black z-[150] scale-x-0 transition-transform origin-right" id="sideCart" >
+    <div class="py-3 border-b-2">
+        <div class="px-5 w-full flex justify-between items-center">
+            <p class="p-2">Cart</p>
+            <div class="p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
             </div>
+        </div>
+    </div>
+    <div class="h-full flex flex-col flex-auto items-stretch justify-between">
+        <div class="relative flex-auto overflow-hidden w-full h-full">
+            <div class="absolute top-0 right-0 left-0 bottom-0 overflow-auto overflow-x-hidden cartBody">
+<!--                <div class="flex gap-2 items-center py-4 border-b-2 p-5">-->
+<!--                    <img src="https://outleton.com/cdn/shop/products/b58d1e3079be145f701202556d8dfd1f_120x.jpg?v=1621270157" alt="">-->
+<!--                    <div class="">-->
+<!--                        <p class="font-semibold">Lorem ipsum dolor sit.</p>-->
+<!--                        <p class="font-semibold text-brand-primary mt-2">599 ден</p>-->
+<!--                        <div class="flex items-center justify-start mb-4">-->
+<!--                            <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                            <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">-->
+<!--                            <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">-->
+<!--                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>-->
+<!--                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>-->
+<!--                            </svg>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="flex gap-2 items-center py-4 border-b-2 p-5">-->
+<!--                    <img src="https://outleton.com/cdn/shop/products/b58d1e3079be145f701202556d8dfd1f_120x.jpg?v=1621270157" alt="">-->
+<!--                    <div class="">-->
+<!--                        <p class="font-semibold">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
+<!--                        <p class="font-semibold text-brand-primary mt-2">599 ден</p>-->
+<!--                        <div class="flex items-center justify-start mb-4">-->
+<!--                            <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                            <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">-->
+<!--                            <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">-->
+<!--                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>-->
+<!--                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>-->
+<!--                            </svg>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="flex gap-2 items-center py-4 border-b-2 p-5">-->
+<!--                    <img src="https://outleton.com/cdn/shop/products/b58d1e3079be145f701202556d8dfd1f_120x.jpg?v=1621270157" alt="">-->
+<!--                    <div class="">-->
+<!--                        <p class="font-semibold">Lorem ipsum dolor sit amet, consectetur.</p>-->
+<!--                        <p class="font-semibold text-brand-primary mt-2">599 ден</p>-->
+<!--                        <div class="flex items-center justify-start mb-4">-->
+<!--                            <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                            <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">-->
+<!--                            <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">-->
+<!--                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">-->
+<!--                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>-->
+<!--                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>-->
+<!--                            </svg>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+            </div>
+        </div>
+        <div class="p-5 border-t-2">
+            <div class="flex justify-between items-center text-lg mb-2">
+                <p class="font-semibold">Вкупно</p>
+                <p id="cartTotal">2396 ден</p>
+            </div>
+            <p class="text-sm text-black/60 mb-2">Данок вклучен. Испораката е пресметанa при наплата</p>
+            <a href="{% url 'shop:checkout' %}" class="block text-center cursor-pointer bg-brand-primary font-semibold text-white rounded-lg p-2 hover:bg-brand-primary/80">Кон Нарачка</a>
+        </div>
+    </div>
+
+</div>
+<div class="flex gap-2 items-center py-4 border-b-2 p-5 cartItem" style="display:none!important" id="cartItem_template" data-item="">
+    <img src="" alt="" class="cartItem_thumbnail" style="max-width:120px!important">
+    <div class="">
+        <p class="font-semibold cartItem_title"></p>
+        <p class="font-semibold text-brand-primary mt-2"><span class="cartItem_quantityText"></span> x <span class="cartItem_price"></span> ден</p>
+        <div class="flex items-center justify-start mb-4">
+            <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 cartItemQuantityBtn quantityMinus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
+                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                </svg>
+            </div>
+            <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2 cartItem_quantityInput">
+            <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0 cartItemQuantityBtn quantityPlus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="removeCartItemBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+            </svg>
         </div>
     </div>
 </div>

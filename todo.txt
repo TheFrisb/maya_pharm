@@ -1,0 +1,27 @@
+Backend
+
+1. Make order export
+3. Optimize url
+
+5. Change views to use models
+6. Make responsive
+7. Add search function
+
+
+
+
+
+
+
+
+
+Done:
+B-E:
+1. Products - Done
+2. Categories - Done
+3. Verify cart functionality - Done
+4. Verify shopmanager functionality - Done
+F-E:
+2. Add cart functionality - Done
+2. Optimize admin - Done
+4. Category support in views - Done

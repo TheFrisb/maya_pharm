@@ -66,10 +66,18 @@ class CartItem(models.Model):
         return self.price * self.quantity
 
     def as_dict(self):
+        prod = self.product
         return {
-            'product': self.product.id,
-            'price': self.price,
+            'product_id': prod.pk,
+            'product_title': prod.title,
+            'product_thumbnail': prod.thumbnail.url,
             'quantity': self.quantity,
+            'price': self.price,
+            'price_total': self.get_total_price(),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+
+    def __str__(self):
+        return f'{self.product.title} x {self.quantity} | price: {self.price}'
