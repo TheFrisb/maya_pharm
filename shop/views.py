@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Product, Order
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Product, Order, Category
 from .forms import CheckoutForm
 
 
@@ -12,13 +12,19 @@ def shop_home(request):
     return render(request, 'shop/shop.html', context)
 
 
-def product_page(request):
-    context = {}
+def product_page(request, name):
+    product = get_object_or_404(Product.objects.select_related(), slug=name)
+    context = {
+        'product': product
+    }
     return render(request, 'shop/product_page.html', context)
 
 
-def category_page(request):
-    context = {}
+def category_page(request, slug):
+    category = get_object_or_404(Category.objects.select_related(), slug=slug)
+    context = {
+        'category': category
+    }
     return render(request, 'shop/category_page.html', context)
 
 

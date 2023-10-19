@@ -49,8 +49,10 @@
         <div class="slider-6 mx-auto">
             {% for product in products %}
                 <div class="slider-Div product-card">
-                    <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
-                    <p class="product-card-title">{{ product.title }}</p>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                        <p class="product-card-title">{{ product.title }}</p>
+                    </a>
                     <div class="flex items-center justify-center mb-4 quantityContainer">
                         <div class="text-black/60 p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 quantityBtn quantityMinus cursor-pointer hover:bg-black hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="" viewBox="0 0 16 16">

@@ -1,8 +1,10 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from imagekit.models import ProcessedImageField
 from transliterate import translit
+
 
 # Create your models here.
 
@@ -24,6 +26,9 @@ class Category(models.Model):
                 num += 1
             self.slug = unique_slug
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('shop:category_page', kwargs={'slug': self.slug})
 
     def __str__(self):
         if self.parent is None:
@@ -47,15 +52,31 @@ class Product(models.Model):
         choices=STATUS_CHOICES,
         default=HIDDEN
     )
+
     categories = models.ManyToManyField(Category, related_name='products')
     thumbnail = ProcessedImageField(upload_to="products/%Y/%m/%d/")
     title = models.CharField(max_length=256)
     short_desc = RichTextField()
     long_desc = RichTextField()
     sale_price = models.IntegerField()
+    slug = models.SlugField(blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            latin_name = translit(self.title, 'mk', reversed=True)
+            slug_candidate = slugify(latin_name)
+            unique_slug = slug_candidate
+            num = 1
+            while Product.objects.filter(slug=unique_slug).exists():
+                unique_slug = '{}-{}'.format(slug_candidate, num)
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
     def __str__(self):
         return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('shop:product_page', kwargs={'name': self.slug})
 
     class Meta:
         verbose_name = "Продукт"
