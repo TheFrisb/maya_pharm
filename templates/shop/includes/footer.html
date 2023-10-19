@@ -1,16 +1,16 @@
 {% load static %}
 {% url 'shop:checkout' as checkout_url %}
 {% if request.path != checkout_url %}
-<footer class="w-full bg-brand-tertiary">
-    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-brand-yellow">
+<footer class="w-full bg-gray-300/70">
+    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-brand-primary">
       <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div class="sm:col-span-2">
           <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
             <div class="flex items-center justify-start relative gap-2 mb-2">
                 <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
                 <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                    <p class="text-2xl font-bold text-brand-yellow">Maja Farm</p>
-                    <p class="text-sm italic font-medium text-brand-yellow text-center relative top-[-1px]">Smart pharmacy</p>
+                    <p class="text-2xl font-bold text-brand-primary">Maja Farm</p>
+                    <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Smart pharmacy</p>
                 </div>
             </div>
           </a>
@@ -25,15 +25,15 @@
         </div>
         <div class="space-y-2 text-sm">
           <p class="text-base font-bold tracking-wide ">Contacts</p>
-          <div class="flex text-white">
+          <div class="flex text-black/70">
             <p class="mr-1 ">Phone:</p>
             <a href="tel:850-123-5021" aria-label="Our phone" title="Our phone" class="transition-colors duration-300">850-123-5021</a>
           </div>
-          <div class="flex text-white">
+          <div class="flex text-black/70">
             <p class="mr-1">Email:</p>
             <a href="mailto:info@lorem.mail" aria-label="Our email" title="Our email" class="transition-colors duration-300 ">info@lorem.mail</a>
           </div>
-          <div class="flex text-white">
+          <div class="flex text-black/70">
             <p class="mr-1">Address:</p>
             <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" class="transition-colors duration-300 ">
               312 Lovely Street, NY
@@ -43,7 +43,7 @@
         <div>
           <span class="text-base font-bold tracking-wide ">Social</span>
           <div class="flex items-center mt-1 space-x-3">
-            <a href="/" class="text-white/80">
+            <a href="/" class="text-black/70">
               <svg viewBox="0 0 30 30" fill="currentColor" class="h-6">
                 <circle cx="15" cy="15" r="4"></circle>
                 <path
@@ -51,7 +51,7 @@
                 ></path>
               </svg>
             </a>
-            <a href="/" class="text-white/80">
+            <a href="/" class="text-black/70">
               <svg viewBox="0 0 24 24" fill="currentColor" class="h-5">
                 <path
                   d="M22,0H2C0.895,0,0,0.895,0,2v20c0,1.105,0.895,2,2,2h11v-9h-3v-4h3V8.413c0-3.1,1.893-4.788,4.659-4.788 c1.325,0,2.463,0.099,2.795,0.143v3.24l-1.918,0.001c-1.504,0-1.795,0.715-1.795,1.763V11h4.44l-1,4h-3.44v9H22c1.105,0,2-0.895,2-2 V2C24,0.895,23.105,0,22,0z"
@@ -59,7 +59,7 @@
               </svg>
             </a>
           </div>
-          <p class="mt-4 text-sm text-white">
+          <p class="mt-4 text-sm text-black/70">
             Bacon ipsum dolor amet short ribs pig sausage prosciutto chicken spare ribs salami.
           </p>
         </div>

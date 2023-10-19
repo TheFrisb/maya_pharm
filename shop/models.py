@@ -1,8 +1,45 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from django.utils.text import slugify
+from ckeditor.fields import RichTextField
+from imagekit.models import ProcessedImageField
+from transliterate import translit
 
 
 # Create your models here.
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Име")
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Припаѓа на",
+                               related_name='subcategories')
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            latin_name = translit(self.name, 'mk', reversed=True)
+            slug_candidate = slugify(latin_name)
+            unique_slug = slug_candidate
+            num = 1
+            while Category.objects.filter(slug=unique_slug).exists():
+                unique_slug = '{}-{}'.format(slug_candidate, num)
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('shop:category_page', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        if self.parent is None:
+            return self.name
+        return f"[{self.parent}] {self.name}"
+
+    class Meta():
+        verbose_name = "Категорија"
+        verbose_name_plural = "Категории"
+
+
 class Product(models.Model):
     HIDDEN = "PRIVATE"
     ACTIVE = "ACTIVE"
@@ -15,11 +52,35 @@ class Product(models.Model):
         choices=STATUS_CHOICES,
         default=HIDDEN
     )
-    title = models.CharField(max_length=256)
-    sale_price = models.IntegerField()
 
+    categories = models.ManyToManyField(Category, related_name='products')
+    thumbnail = ProcessedImageField(upload_to="products/%Y/%m/%d/")
+    title = models.CharField(max_length=256)
+    short_desc = RichTextField()
+    long_desc = RichTextField()
+    sale_price = models.IntegerField()
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            latin_name = translit(self.title, 'mk', reversed=True)
+            slug_candidate = slugify(latin_name)
+            unique_slug = slug_candidate
+            num = 1
+            while Product.objects.filter(slug=unique_slug).exists():
+                unique_slug = '{}-{}'.format(slug_candidate, num)
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
     def __str__(self):
         return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('shop:product_page', kwargs={'name': self.slug})
+
+    class Meta:
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукти"
 
 
 class Order(models.Model):
@@ -28,17 +89,17 @@ class Order(models.Model):
         ('confirmed', 'Confirmed'),
         ('deleted', 'Deleted')
     )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
-    subtotal_price = models.IntegerField(default=0)
-    total_price = models.IntegerField(default=0)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    shipping_address = models.CharField(max_length=255)
-    city = models.CharField(max_length=255, default="Strumica")
-    phone_number = models.CharField(max_length=15)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending', verbose_name="Статус")
+    subtotal_price = models.IntegerField(default=0, verbose_name="Цена без достава")
+    total_price = models.IntegerField(default=0, verbose_name="Вкупна цена")
+    first_name = models.CharField(max_length=50, verbose_name="Име")
+    last_name = models.CharField(max_length=50, verbose_name="Презиме")
+    shipping_address = models.CharField(max_length=255, verbose_name="Адреса")
+    city = models.CharField(max_length=255, default="Strumica", verbose_name="Град")
+    phone_number = models.CharField(max_length=15, verbose_name="Телефонски број")
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Креиран во")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Модифициран во")
 
     def get_order_total(self):
         return sum(item.get_total_price() for item in self.items.all())
@@ -74,14 +135,21 @@ class Order(models.Model):
         self.status = 'pending'
         self.save()
 
+    class Meta:
+        verbose_name = "Порачка"
+        verbose_name_plural = "Порачки"
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    quantity = models.PositiveIntegerField(default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE, verbose_name="Порачка")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
+    price = models.IntegerField(verbose_name="Цена")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Количина")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Креиран во")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Модифициран во")
 
     def get_total_price(self):
         return self.price * self.quantity
@@ -96,4 +164,11 @@ class OrderItem(models.Model):
         }
 
     def details(self):
-        return f'{self.product.title} x {self.quantity} - {self.price} ден'
+        return f'{self.product.title} - 4 x {self.price} ден'
+
+    def __str__(self):
+        return f'{self.product.title} x {self.quantity}'
+
+    class Meta:
+        verbose_name = "Порачен продукт"
+        verbose_name_plural = "Порачени продукти"

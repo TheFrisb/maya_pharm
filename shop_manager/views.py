@@ -21,10 +21,13 @@ def order_dashboard(request, status):
     if status == 'confirmed':
         orders = Order.objects.filter(status="confirmed").prefetch_related('items').order_by('id')
         title = "Потврдани нарачки"
+    elif status == 'deleted':
+        orders = Order.objects.filter(status="deleted").prefetch_related('items').order_by('id')
+        title = "Избришени нарачки"
     else:
         orders = Order.objects.filter(status="pending").prefetch_related('items').order_by('-id')
         title = "Непотврдани нарачки"
-    paginator = Paginator(orders, 1)
+    paginator = Paginator(orders, 8)
     context = {
         'page_obj': paginator.get_page(page_number),
         'paginator': paginator,
@@ -33,3 +36,5 @@ def order_dashboard(request, status):
     }
 
     return render(request, "shop_manager/base.html", context=context)
+
+

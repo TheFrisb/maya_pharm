@@ -39,14 +39,19 @@ def addToCart(request):
 
 @require_http_methods(['POST'])
 def removeFromCart(request):
-    form = CartItemForm(request.body)
-
+    try:
+        form = CartItemForm(json.loads(request.body))
+    except json.JSONDecodeError:
+        return JsonResponse(data={
+            'success': 'error',
+            'message': 'Expected contentType: "application/json"'
+        }, status=400)
     if form.is_valid():
         cart = request.cart
         cart.remove_product(form.cleaned_data['product'])
         return JsonResponse(data={
             'success': 'success',
-            'message': "Product removed from cart",
+            'message': "CartItem removed from cart",
             'cart': cart.as_dict(),
         }, status=200)
 
@@ -59,7 +64,13 @@ def removeFromCart(request):
 
 @require_http_methods(['POST'])
 def updateCartItem(request):
-    form = UpdateCartItemForm(request.body)
+    try:
+        form = UpdateCartItemForm(json.loads(request.body))
+    except json.JSONDecodeError:
+        return JsonResponse(data={
+            'success': 'error',
+            'message': 'Expected contentType: "application/json"'
+        }, status=400)
 
     if form.is_valid():
         cart = request.cart

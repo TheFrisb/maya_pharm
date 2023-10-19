@@ -10,7 +10,10 @@
           -moz-appearance: textfield !important;
         }
      }
-
+#sideCart.active{
+    @apply scale-x-100;
+    @apply transition-transform;
+}
 
 .slider-arrow{
     @apply py-4;
