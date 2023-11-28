@@ -103,9 +103,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'maja_farm_postgresql',
-            'USER': 'mainDbUser',
-            'PASSWORD': '!#@superCoolPasswordSecureAsFuck123$#^',
+            'NAME': 'majafarm',
+            'USER': 'majafarmuser',
+            'PASSWORD': 'majafarmuserSecure123',
             'HOST': 'localhost',
             'PORT': '',
         }
