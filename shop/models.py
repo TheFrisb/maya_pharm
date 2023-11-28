@@ -40,6 +40,29 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
 
+class Brand(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Име")
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            latin_name = translit(self.name, 'mk', reversed=True)
+            slug_candidate = slugify(latin_name)
+            unique_slug = slug_candidate
+            num = 1
+            while Brand.objects.filter(slug=unique_slug).exists():
+                unique_slug = '{}-{}'.format(slug_candidate, num)
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    class Meta():
+        verbose_name = "Бренд"
+        verbose_name_plural = "Брендови"
+
 class Product(models.Model):
     HIDDEN = "PRIVATE"
     ACTIVE = "ACTIVE"
@@ -53,12 +76,13 @@ class Product(models.Model):
         default=HIDDEN
     )
 
-    categories = models.ManyToManyField(Category, related_name='products')
-    thumbnail = ProcessedImageField(upload_to="products/%Y/%m/%d/")
+    categories = models.ManyToManyField(Category, related_name='products', verbose_name='Категории')
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products', verbose_name="Бренд", blank=True, null=True)
+    thumbnail = ProcessedImageField(upload_to="products/%Y/%m/%d/", verbose_name="Слика", blank=True, null=True)
     title = models.CharField(max_length=256)
-    short_desc = RichTextField()
-    long_desc = RichTextField()
-    sale_price = models.IntegerField()
+    sale_price = models.IntegerField(verbose_name="Цена")
+    short_desc = RichTextField(verbose_name="Краток опис", blank=True, null=True)
+    long_desc = RichTextField(verbose_name="Долг опис", blank=True, null=True)
     slug = models.SlugField(blank=True)
 
     def save(self, *args, **kwargs):

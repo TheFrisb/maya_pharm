@@ -13,37 +13,47 @@
         </div>
     </div>
 {% else %}
-    <div id="header" class="bg-gray-300/70 py-6">
+    <div id="header" class="bg-gray-300/70 py-6 px-2">
         <div class="container mx-auto w-full flex items-center justify-between">
-            <div>
+            <div class="hidden md:block">
                 <img src="{% static 'assets/images/pharma_logo.png' %}" alt="" class="max-w-[80px]">
             </div>
-            <div class="flex items-center justify-center flex-col gap-2 grow">
-                <div class="flex items-center justify-start relative gap-2 mb-2">
-                    <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
+            <div class="flex items-center justify-center flex-col gap-2 md:grow">
+                <div class="flex items-center justify-start relative gap-2 xl:mb-2">
+                    <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[52px] md:max-w-[84px]">
                     <div class="flex items-center justify-center flex-col relative top-[-5px]">
                         <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
                         <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар на вашето здравје</p>
                     </div>
                 </div>
-                <div class="flex items-center w-8/12 justify-center">
-                    <div class="flex items-center justify-center bg-white p-3 rounded-l">
+                <div class="hidden md:flex items-center w-8/12 justify-center  rounded-lg group flex-wrap">
+                    <div class="flex items-center justify-center bg-white p-3 rounded-l cursor-pointer hover:text-brand-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 " viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </div>
-                    <input type="text" name="searchInput" class="h-[56px] rounded-r grow max-w-xl" id="searchInput">
+                    <input type="text" name="searchInput" class="h-[56px] rounded-r grow max-w-xl px-2 focus:outline-brand-primary" id="searchInput">
+                    <div class="basis-full bg-white p-2 rounded-tl-none rounded-tr-none border-t-2 border-brand-primary/60 rounded-lg">
+                        <p>asd</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex items-center justify-center relative cursor-pointer" id="cartIcon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-brand-primary" viewBox="0 0 16 16">
-                  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+            <div class="flex items-center justify-center gap-4">
+                <div class="flex items-center justify-center relative cursor-pointer" id="cartIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-brand-primary" viewBox="0 0 16 16">
+                      <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                    </svg>
+                    <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl" id="cartQuantityContainer">0</span>
+                </div>
+            <div class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                 </svg>
-                <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl" id="cartQuantityContainer">0</span>
+            </div>
             </div>
         </div>
     </div>
-<div class="bg-brand-secondary">
+<div class="bg-brand-secondary hidden lg:block">
     <div class="container mx-auto text-white">
         <div class="flex items-center justify-center">
             {% for category in categories %}
@@ -67,9 +77,49 @@
         </div>
     </div>
 </div>
+<div class="container md:hidden bg-gray-300/70 border-b border-t border-brand-primary">
+    <div class="w-full">
+        {% for category in categories %}
+            <div class="px-2 font-medium text-sm group relative w-full border-b border-brand-primary last-of-type:border-0 flex items-center justify-between flex-wrap">
+                <a href="{{ category.get_absolute_url }}" class="">{{ category.name }}</a>
+                {% if category.subcategories.all %}
+                    <div class="p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </div>
+                    <div class="basis-full">
+                        {% for subcategory in category.subcategories.all %}
+                         <div class="p-2 cursor-pointer flex items-center justify-between">
+                            <a href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                            </svg>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container my-2 px-1 md:hidden">
+    <div class="flex items-center justify-start gap-1">
+        <img src="{% static 'assets/images/pharma_logo.png' %}" alt="" class="max-w-[40px]">
+        <div class="flex items-center justify-center grow ">
+            <div class="flex items-center justify-center bg-white p-3 rounded-l">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-[18px] w-[18px]" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </div>
+            <input type="text" name="searchInput" placeholder="Пребарај производи" class="h-[42px] rounded-r grow px-2 " id="searchInput">
+        </div>
+    </div>
+</div>
+
 
 <div class="container-fluid w-full h-full overflow-hidden absolute top-0 right-0 bg-black/70 z-[100]" id="overlay" style="display:none!important;"></div>
-<div class="absolute top-0 right-0 bg-white w-4/12 xl:w-2/12 h-full flex flex-col  ml-auto shadow-2xl shadow-black z-[150] scale-x-0 transition-transform origin-right" id="sideCart" >
+<div class="absolute top-0 right-0 bg-white w-11/12 md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 h-full flex flex-col  ml-auto shadow-2xl shadow-black z-[150] scale-x-0 transition-transform origin-right" id="sideCart" >
     <div class="py-3 border-b-2">
         <div class="px-5 w-full flex justify-between items-center">
             <p class="p-2">Cart</p>

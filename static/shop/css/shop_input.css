@@ -36,8 +36,11 @@
 }
 .slider-Div{
     @apply m-2.5;
+    height: auto!important;
 }
-
+.slick-track{
+    display: flex!important;
+}
 
 #checkoutForm label{
     @apply block;
