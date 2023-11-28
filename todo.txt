@@ -1,15 +1,13 @@
 Backend
 
-1. Make order export
-5. Change views to use models
-6. Make responsive
-7. Add search function
-8. Add slider option (hardcode) sliders
-9. Cache ???
-10. Add brands
-11. Card payment
 
+1. Make orders export
 
+3. Add search functionality
+4. Hardcode sliders
+5. Make views use models
+6. Add brands
+7. Integrate card payments
 
 
 
@@ -23,6 +21,7 @@ B-E:
 3. Verify cart functionality - Done
 4. Verify shopmanager functionality - Done
 5. Optimize url
+2. Make responsive
 
 F-E:
 2. Add cart functionality - Done

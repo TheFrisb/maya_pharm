@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from .models import Product, Order, OrderItem, Category
+from .models import Product, Order, OrderItem, Category, Brand
 
 
 # Register your models here.
@@ -26,6 +26,8 @@ class ProductAdminForm(forms.ModelForm):
         widget=FilteredSelectMultiple(verbose_name="Categories", is_stacked=False)
     )
 
+
+
     class Meta:
         model = Product
         fields = '__all__'
@@ -38,7 +40,7 @@ class OrderItemInline(admin.TabularInline):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'parent']
     list_filter = [ParentCategoryFilter]
-
+    readonly_fields = ('slug',)
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'parent':
             kwargs['queryset'] = Category.objects.filter(parent=None)
@@ -56,6 +58,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'status',)
     list_filter = ('status',)
     search_fields = ('title',)
+    readonly_fields = ('slug',)
 
 
 
@@ -64,3 +67,8 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     search_fields = ('first_name', 'last_name', 'shipping_address', 'phone_number')
     inlines = [OrderItemInline]
+
+
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    pass
