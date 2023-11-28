@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-palk5qx1p-%h2likg09!hr8nhfr6gz#kqzbp=rh4qc3xhtm*(1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['majafarm.mk', 'www.majafarm.mk', 'localhost']
 
 
 # Application definition
@@ -89,13 +92,24 @@ WSGI_APPLICATION = 'maya_pharm.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'maja_farm_postgresql',
+            'USER': 'mainDbUser',
+            'PASSWORD': '!#@superCoolPasswordSecureAsFuck123$#^',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 
 # Password validation
@@ -135,6 +149,7 @@ USE_I18N = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static/"]
+
 MEDIA_ROOT = "media/"
 MEDIA_URL = "media/"
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
@@ -144,3 +159,6 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
