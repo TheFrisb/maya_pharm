@@ -83,7 +83,7 @@ class Product(models.Model):
     sale_price = models.IntegerField(verbose_name="Цена")
     short_desc = RichTextField(verbose_name="Краток опис", blank=True, null=True)
     long_desc = RichTextField(verbose_name="Долг опис", blank=True, null=True)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, max_length=350)
 
     def save(self, *args, **kwargs):
         if not self.slug:
