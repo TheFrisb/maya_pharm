@@ -31,9 +31,9 @@ class Category(models.Model):
         return reverse('shop:category_page', kwargs={'slug': self.slug})
 
     def __str__(self):
-        if self.parent is None:
-            return self.name
-        return f"[{self.parent}] {self.name}"
+        if self.parent.parent is None:
+            return f'[{self.parent.name}] -> {self.name}'
+        return f'{self.name}'
 
     class Meta():
         verbose_name = "Категорија"
