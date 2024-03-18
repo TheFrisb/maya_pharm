@@ -31,7 +31,7 @@ class Category(models.Model):
         return reverse('shop:category_page', kwargs={'slug': self.slug})
 
     def __str__(self):
-        if self.parent.parent is None:
+        if self.parent.parent is None and self.parent is not None:
             return f'[{self.parent.name}] -> {self.name}'
         return f'{self.name}'
 
