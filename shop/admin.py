@@ -26,15 +26,6 @@ class ProductAdminForm(forms.ModelForm):
         widget=FilteredSelectMultiple(verbose_name="Categories", is_stacked=False)
     )
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        # Adjust the queryset for categories to avoid potential recursion
-        form.base_fields['categories'].queryset = Category.objects.exclude(
-            parent=None)  # Or use a more specific query to avoid recursion
-        return form
-
-
-
     class Meta:
         model = Product
         fields = '__all__'
