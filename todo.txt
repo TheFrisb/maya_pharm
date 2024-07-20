@@ -1,29 +1,6 @@
-Backend
-
-
-1. Make orders export
-
-3. Add search functionality
-4. Hardcode sliders
-5. Make views use models
-6. Add brands
-7. Integrate card payments
-
-
-
-
-
-
-Done:
-B-E:
-1. Products - Done
-2. Categories - Done
-3. Verify cart functionality - Done
-4. Verify shopmanager functionality - Done
-5. Optimize url
-2. Make responsive
-
-F-E:
-2. Add cart functionality - Done
-2. Optimize admin - Done
-4. Category support in views - Done
+Todo:
+1. Fix header
+2. Fix cart close button i overlay
+3. Fix home page sliders
+4. Fix cursors, redirects deka treba
+5. Integrate card payments
