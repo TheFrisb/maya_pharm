@@ -1,165 +1,13 @@
 import csv
 import os
 
-from django.conf import settings
-from django.core.management.base import BaseCommand
+import django
+
+# Set up Django environment
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "maya_pharm.settings")
+django.setup()
 
 from shop.models import Category, Brand, Product, Order, OrderItem
-
-
-class Command(BaseCommand):
-    help = "Export models to CSV files"
-
-    def handle(self, *args, **options):
-        base_media_url = "https://www.majafarm.mk/media/"
-        output_dir = os.path.join(settings.BASE_DIR, "exports")
-        os.makedirs(output_dir, exist_ok=True)
-
-        self.export_categories(output_dir)
-        self.export_brands(output_dir)
-        self.export_products(output_dir, base_media_url)
-        self.export_orders(output_dir)
-        self.export_order_items(output_dir)
-
-    def export_categories(self, output_dir):
-        categories = Category.objects.all()
-        with open(
-            os.path.join(output_dir, "categories.csv"),
-            "w",
-            newline="",
-            encoding="utf-8",
-        ) as csvfile:
-            fieldnames = ["id", "name", "parent", "slug"]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for category in categories:
-                writer.writerow(
-                    {
-                        "id": category.id,
-                        "name": category.name,
-                        "parent": category.parent.id if category.parent else "",
-                        "slug": category.slug,
-                    }
-                )
-
-    def export_brands(self, output_dir):
-        brands = Brand.objects.all()
-        with open(
-            os.path.join(output_dir, "brands.csv"), "w", newline="", encoding="utf-8"
-        ) as csvfile:
-            fieldnames = ["id", "name", "slug"]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for brand in brands:
-                writer.writerow(
-                    {"id": brand.id, "name": brand.name, "slug": brand.slug}
-                )
-
-    def export_products(self, output_dir, base_media_url):
-        products = Product.objects.all()
-        with open(
-            os.path.join(output_dir, "products.csv"), "w", newline="", encoding="utf-8"
-        ) as csvfile:
-            fieldnames = [
-                "id",
-                "status",
-                "brand",
-                "thumbnail",
-                "title",
-                "sale_price",
-                "short_desc",
-                "long_desc",
-                "slug",
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for product in products:
-                writer.writerow(
-                    {
-                        "id": product.id,
-                        "status": product.status,
-                        "brand": product.brand.id if product.brand else "",
-                        "thumbnail": (
-                            base_media_url + product.thumbnail.name
-                            if product.thumbnail
-                            else ""
-                        ),
-                        "title": product.title,
-                        "sale_price": product.sale_price,
-                        "short_desc": product.short_desc,
-                        "long_desc": product.long_desc,
-                        "slug": product.slug,
-                    }
-                )
-
-    def export_orders(self, output_dir):
-        orders = Order.objects.all()
-        with open(
-            os.path.join(output_dir, "orders.csv"), "w", newline="", encoding="utf-8"
-        ) as csvfile:
-            fieldnames = [
-                "id",
-                "status",
-                "subtotal_price",
-                "total_price",
-                "first_name",
-                "last_name",
-                "shipping_address",
-                "city",
-                "phone_number",
-                "created_at",
-                "updated_at",
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for order in orders:
-                writer.writerow(
-                    {
-                        "id": order.id,
-                        "status": order.status,
-                        "subtotal_price": order.subtotal_price,
-                        "total_price": order.total_price,
-                        "first_name": order.first_name,
-                        "last_name": order.last_name,
-                        "shipping_address": order.shipping_address,
-                        "city": order.city,
-                        "phone_number": order.phone_number,
-                        "created_at": order.created_at,
-                        "updated_at": order.updated_at,
-                    }
-                )
-
-    def export_order_items(self, output_dir):
-        order_items = OrderItem.objects.all()
-        with open(
-            os.path.join(output_dir, "order_items.csv"),
-            "w",
-            newline="",
-            encoding="utf-8",
-        ) as csvfile:
-            fieldnames = [
-                "id",
-                "order",
-                "product",
-                "price",
-                "quantity",
-                "created_at",
-                "updated_at",
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            for item in order_items:
-                writer.writerow(
-                    {
-                        "id": item.id,
-                        "order": item.order.id,
-                        "product": item.product.id,
-                        "price": item.price,
-                        "quantity": item.quantity,
-                        "created_at": item.created_at,
-                        "updated_at": item.updated_at,
-                    }
-                )
 
 
 def import_categories(file_path):
@@ -230,3 +78,9 @@ def import_order_items(file_path):
                 created_at=row["created_at"],
                 updated_at=row["updated_at"],
             )
+
+
+if __name__ == "__main__":
+    import_categories("/home/thefrisb/Desktop/django/maya_pharm/exports/categories.csv")
+    import_brands("/home/thefrisb/Desktop/django/maya_pharm/exports/brands.csv")
+    import_products("/home/thefrisb/Desktop/django/maya_pharm/exports/products.csv")

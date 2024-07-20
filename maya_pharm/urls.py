@@ -14,18 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("__reload__/", include("django_browser_reload.urls")), # Automatically reload browser
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', include('shop.urls')),
-    path('api/v1/cart/', include('cart.urls')),
-    path('shopmanager/', include('shop_manager.urls')),
+    path("admin/", admin.site.urls),
+    path(
+        "__reload__/", include("django_browser_reload.urls")
+    ),  # Automatically reload browser
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
+    path("", include("shop.urls")),
+    path("api/v1/cart/", include("cart.urls")),
+    path("shopmanager/", include("shop_manager.urls")),
 ]
 
 if settings.DEBUG:

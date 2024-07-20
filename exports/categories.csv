@@ -1,0 +1,48 @@
+id,name,parent,slug
+1,Против болка,,protiv-bolka
+2,Настинка и грип,,nastinka-i-grip
+3,кашлица,2,kashlica
+4,грло,2,grlo
+5,нос,2,nos
+6,уво,2,uvo
+7,Витамини и суплементи,,vitamini-i-suplementi
+8,имунитет,7,imunitet
+9,алергија,7,alergija
+10,анемија,7,anemija
+11,мокрачни патишта,7,mokrachni-patishta
+13,"коски, зглобови, мускули",7,koski-zglobovi-muskuli
+12,дијабетес,7,dijabetes
+14,нервен систем,7,nerven-sistem
+15,црн дроб,7,crn-drob
+16,витамини за трудници и доилки,7,vitamini-za-trudnici-i-doilki
+17,витамини за деца,7,vitamini-za-deca
+18,препарати за око,7,preparati-za-oko
+19,женско здравје,7,zhensko-zdravje
+20,машко здравје,7,mashko-zdravje
+21,Нега и заштита,,nega-i-zashtita
+22,кожа,21,kozha
+23,коса,21,kosa
+24,интимна нега,21,intimna-nega
+25,сексуално здравје,21,seksualno-zdravje
+26,средства за дезинфекција,21,sredstva-za-dezinfekcija
+27,Бебешка програма,,bebeshka-programa
+28,бебешка козметика,27,bebeshka-kozmetika
+29,бебешки пелени марамици,27,bebeshki-peleni-maramici
+30,бебешка опрема,27,bebeshka-oprema
+31,бебешка храна,27,bebeshka-hrana
+32,Медицински помагала,,medicinski-pomagala
+33,Апарати за притисок,32,aparati-za-pritisok
+34,Инхалатори,32,inhalatori
+35,Апарати и ленти за шеќер,32,aparati-i-lenti-za-shekjer
+36,Топломери,32,toplomeri
+37,Ортопедски помагала,,ortopedski-pomagala
+38,Стегачи,37,stegachi
+39,Појаси,37,pojasi
+40,Чорапи за вени,37,chorapi-za-veni
+41,Настинка и грип,,nastinka-i-grip-1
+43,За се,7,za-se
+42,Крвни садови,,krvni-sadovi
+44,Се,42,se
+45,Се,41,se-1
+46,Против болка,46,protiv-bolka-1
+
