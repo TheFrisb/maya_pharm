@@ -116,7 +116,9 @@ class Product(models.Model):
         verbose_name="Слика",
         blank=True,
         null=True,
-        processors=[ResizeToFit(width=600, height=600, upscale=True)],
+        processors=[
+            ResizeToFit(width=600, height=600, upscale=True, mat_color="#FFFFFF")
+        ],
         options={"quality": 80, "optimize": True},
     )
     title = models.CharField(max_length=256)
