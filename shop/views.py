@@ -14,8 +14,10 @@ def shop_home(request):
         "brands": Brand.objects.annotate(product_count=Count("products")).filter(
             product_count__gt=0
         ),
-        "pain_category": Category.objects.filter(slug="protiv-bolka").first(),
-        "vitamin_category": Category.objects.filter(
+        "promoted_category_first": Category.objects.filter(
+            slug="nastinka-i-grip"
+        ).first(),
+        "promoted_category_second": Category.objects.filter(
             slug="vitamini-i-suplementi"
         ).first(),
         "redirect_images": RedirectImage.objects.all(),

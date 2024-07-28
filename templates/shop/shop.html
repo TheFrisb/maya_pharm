@@ -80,9 +80,9 @@
 
 
         <div class="my-8">
-            <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ pain_category.name }}</h4>
+            <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ promoted_category_first.name }}</h4>
             <div class="slider-6 mx-auto">
-                {% for product in pain_category.products.all %}
+                {% for product in promoted_category_first.products.all %}
                     <div class="slider-Div product-card">
                         <a href="{{ product.get_absolute_url }}">
                             <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
@@ -167,9 +167,9 @@
         {#        </div>#}
 
         <div class="my-8">
-            <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ vitamin_category.name }}</h4>
+            <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ promoted_category_second.name }}</h4>
             <div class="slider-6 mx-auto">
-                {% for product in vitamin_category.products.all %}
+                {% for product in promoted_category_second.products.all %}
                     <div class="slider-Div product-card">
                         <a href="{{ product.get_absolute_url }}">
                             <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
