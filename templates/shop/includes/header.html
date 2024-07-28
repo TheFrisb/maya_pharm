@@ -68,7 +68,7 @@
         <div class="container mx-auto text-white">
             <div class="flex items-center justify-center">
                 {% for category in categories %}
-                    <div class="p-2 font-bold text-sm group relative">
+                    <div class="p-2 font-bold text-sm group relative z-[400]">
                         <a href="{{ category.get_absolute_url }}"
                            class=" first-letter:uppercase">{{ category.name }}</a>
                         {% if category.subcategories.all %}
@@ -93,7 +93,8 @@
             </div>
         </div>
     </div>
-    <div class="container md:hidden bg-gray-300/70 border-b border-t border-brand-primary hidden" id="menuContainer">
+    <div class="container md:hidden bg-gray-300/70 border-b border-t border-brand-primary hidden z-[400]"
+         id="menuContainer">
         <div class="w-full">
             {% for category in categories %}
                 <div class="px-2 font-medium text-sm group relative w-full border-b border-brand-primary last-of-type:border-0 flex items-center justify-between flex-wrap">

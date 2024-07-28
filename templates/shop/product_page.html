@@ -75,7 +75,7 @@
             <h4 class="font-bold text-xl mb-1 text-brand-tertiary">Lorem ipsum dolor sit amet.</h4>
             <div class="slider-6 mx-auto">
                 {% for product in related_products %}
-                    <div class="slider-Div product-card">
+                    <div class="slider-Div product-card slick-slide">
                         <a href="{{ product.get_absolute_url }}">
                             <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
                             <p class="product-card-title">{{ product.title }}</p>

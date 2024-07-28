@@ -16,10 +16,12 @@
           rel="stylesheet">
 
 </head>
-<body class="font-normal font-montserrat bg-gray-300/30 ">
+<body class="font-normal font-montserrat bg-gray-300/30 flex flex-col min-h-screen">
 {% csrf_token %}
 {% include 'shop/includes/header.html' %}
-{% block content %}{% endblock content %}
+<div class="grow">
+    {% block content %}{% endblock content %}
+</div>
 {% include 'shop/includes/footer.html' %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
