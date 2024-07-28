@@ -1,6 +1,6 @@
 Todo:
-1. Fix header
-2. Fix cart close button i overlay
-3. Fix home page sliders
-4. Fix cursors, redirects deka treba
-5. Integrate card payments
+1. Opraj home page
+2. Opraj checkout i cart middleware
+3. Opraj footer
+4. Opraj search baro i za mobilen
+5. Opraj kategoriite

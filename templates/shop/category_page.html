@@ -1,431 +1,87 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container px-4 mx-auto my-8 ">
-    <h1 class="font-semibold text-2xl text-brand-tertiary mb-8">Lorem ipsum dolor sit.</h1>
-    <div class="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
+    <div class="container px-4 mx-auto my-8 ">
+        <h1 class="font-semibold text-2xl text-brand-tertiary mb-8 first-letter:uppercase">{{ category.name }}</h1>
+        {% if not products %}
+            <p class="text-brand-secondary">Нема производи во оваа категорија</p>
+        {% else %}
+            <div class="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                {% for product in products %}
+                    <div class="product-card">
+                        <a href="{{ product.get_absolute_url }}"><img src="{{ product.thumbnail.url }}"
+                                                                      alt="" class="product-card-image"></a>
+                        <a class="product-card-title" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                        <div class="flex items-center justify-center mb-4 quantityContainer">
+                            <div class="text-black/60 p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 quantityBtn quantityMinus cursor-pointer hover:bg-black hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                            <input type="number" name="quantityInput" value="1"
+                                   class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2 quantityInput">
+                            <div class="text-black/60 p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0 quantityBtn quantityPlus cursor-pointer hover:bg-black hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
+                    </div>
+                {% endfor %}
             </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-            <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-            <div class="flex items-center justify-center mb-4">
-                <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                    </svg>
-                </div>
-                <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="addToCartBtn">Add to cart</button>
-        </div>
-    </div>
 
-    <div class="flex items-center justify-center gap-1">
+            <div class=" flex items-center justify-center gap-1">
 
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="paginator-arrow">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-              </svg>
-          </a>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="paginator-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                    </a>
 
-          {% if page_obj.number > 3 %}
-            <a href="?page=1" class="paginator-number">1</a>
-            {% if page_obj.number > 4 %}
-              <span>...</span>
-            {% endif %}
-          {% endif %}
+                    {% if page_obj.number > 3 %}
+                        <a href="?page=1" class="paginator-number">1</a>
+                        {% if page_obj.number > 4 %}
+                            <span>...</span>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a href="?page={{ num }}" class="paginator-number active">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}" class="paginator-number">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                        <span>...</span>
+                        <a href="?page={{ page_obj.paginator.num_pages }}"
+                           class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
+                    {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                        <a href="?page={{ page_obj.paginator.num_pages }}"
+                           class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
+                    {% endif %}
+
+                    <a href="?page={{ page_obj.next_page_number }}" class="paginator-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
+                {% endif %}
+
+            </div>
         {% endif %}
 
-        {% for num in page_obj.paginator.page_range %}
-          {% if page_obj.number == num %}
-            <a href="?page={{ num }}" class="paginator-number active">{{ num }}</a>
-          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <a href="?page={{ num }}" class="paginator-number">{{ num }}</a>
-          {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-          {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
-            <span>...</span>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
-          {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="paginator-number">{{ page_obj.paginator.num_pages }}</a>
-          {% endif %}
-
-          <a href="?page={{ page_obj.next_page_number }}" class="paginator-arrow">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
-          </a>
-        {% endif %}
 
     </div>
-
-
-</div>
 {% endblock content %}

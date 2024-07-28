@@ -1,273 +1,103 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container mx-auto my-4 md:my-8 px-2">
-    <div class="flex flex-wrap md:flex-nowrap items-start gap-4">
-        <div class="basis-full md:basis-6/12">
-            <img src="https://betterstudio.com/wp-content/uploads/2019/05/1-1-instagram-1024x1024.jpg" alt="" class="rounded">
-        </div>
-        <div class="basis-full md:basis-6/12 flex flex-col items-start justify-between">
-            <div class="w-full">
-                <h2 class="font-semibold text-2xl mb-4">Iskra ERO FST152 - Set burgii za beton</h2>
-                <p class="mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consectetur debitis deserunt esse et, explicabo fugiat hic maiores modi molestiae mollitia nobis numquam omnis quaerat quam quo recusandae sed sint suscipit voluptas. Deleniti deserunt dolor id iure soluta! Aliquam dolores magni possimus provident quam quas sequi? Autem explicabo neque quas.
-                </p>
+    <div class="container mx-auto my-4 md:my-8 px-2">
+        <div class="flex flex-wrap md:flex-nowrap items-start gap-4">
+            <div class="basis-full md:basis-6/12">
+                <img src="{{ product.thumbnail.url }}" alt="Image of a product" class="rounded">
             </div>
-            <div class="w-full">
-                <p class="font-bold text-brand-primary mb-4 text-2xl "><span class="text-3xl">599</span> ден</p>
-                <p class="text-sm text-black/60 mb-1">Вклучен данок</p>
-                <div class="flex items-center justify-center w-full gap-2 md:gap-4 mb-4">
-                    <div class="flex items-center">
-                        <div class="p-3 bg-white rounded-tl-[50%] rounded-bl-[50%]">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                            </svg>
-                        </div>
-                        <input type="number" name="quantityInput" value="1" class="p-3 text-center w-6/12">
-                        <div class="p-3 bg-white rounded-tr-[50%] rounded-br-[50%]">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <button class="bg-brand-primary w-full text-sm md:text-base text-white font-semibold rounded-lg h-12 px-2">Додади во кошничка</button>
+            <div class="basis-full md:basis-6/12 flex flex-col items-start justify-between">
+                <div class="w-full">
+                    <h2 class="font-semibold text-2xl mb-4">{{ product.title }}</h2>
+{#                    <p class="mb-4">#}
+{#                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consectetur debitis deserunt#}
+{#                        esse et, explicabo fugiat hic maiores modi molestiae mollitia nobis numquam omnis quaerat quam#}
+{#                        quo recusandae sed sint suscipit voluptas. Deleniti deserunt dolor id iure soluta! Aliquam#}
+{#                        dolores magni possimus provident quam quas sequi? Autem explicabo neque quas.#}
+{#                    </p>#}
                 </div>
-                <button class="bg-brand-tertiary w-full text-white font-semibold rounded-lg h-14 px-2">Buy it now</button>
+                <div class="w-full">
+                    <p class="font-bold text-brand-primary mb-4 text-2xl "><span
+                            class="text-3xl">{{ product.sale_price }}</span> ден</p>
+                    <p class="text-sm text-black/60 mb-1">Вклучен данок</p>
+                    <div class="flex items-center justify-center w-full gap-2 md:gap-4 mb-4">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-white rounded-tl-[50%] rounded-bl-[50%]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                            <input type="number" name="quantityInput" value="1" class="p-3 text-center w-6/12">
+                            <div class="p-3 bg-white rounded-tr-[50%] rounded-br-[50%]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="bg-brand-primary w-full text-sm md:text-base text-white font-semibold rounded-lg h-12 px-2">
+                            Додади во кошничка
+                        </button>
+                    </div>
+                    <button class="bg-brand-tertiary w-full text-white font-semibold rounded-lg h-14 px-2">Buy it now
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="w-full my-12 p-2 rounded-lg bg-white">
-        <div class="flex items-center justify-start gap-4 w-full border-b-2">
-            <p class="font-semibold p-2 text-brand-tertiary">Lorem ipsum dolor</p>
-            <p class="font-semibold p-2">Lorem ipsum dolor sit</p>
+        <div class="w-full my-12 p-2 rounded-lg bg-white">
+            <div class="flex items-center justify-start gap-4 w-full border-b-2">
+                <p class="font-semibold p-2 text-brand-tertiary toggleable cursor-pointer" data-target="shortDesc">
+                    Краток опис</p>
+                <p class="font-semibold p-2 toggleable cursor-pointer" data-target="longDesc">Начин на употреба</p>
+            </div>
+            <div class="p-4 description" id="shortDesc">
+                {% if product.short_desc %}
+                    {{ product.short_desc|safe }}
+                {% else %}
+                    <p>Нема краток опис</p>
+                {% endif %}
+            </div>
+            <div class="p-4 description" id="longDesc" style="display: none;">
+                {% if product.long_desc %}
+                    {{ product.long_desc|safe }}
+                {% else %}
+                    <p>Нема начин на употреба</p>
+                {% endif %}
+            </div>
         </div>
-        <div class="p-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid assumenda commodi consequatur corporis culpa in, nemo odit officia qui sit? Ab aspernatur fugiat minima quaerat? Accusamus atque, debitis eum excepturi expedita fugiat incidunt ipsa numquam quam quidem reiciendis reprehenderit tempora unde. Dolore, eligendi id inventore nemo possimus, provident, qui quod quos recusandae reprehenderit ullam voluptatem! Atque, consequuntur, corporis doloribus esse explicabo fugiat ipsa magnam placeat rem repellendus sed sequi sint tempore tenetur veritatis? A ab deleniti harum iure modi numquam qui quos ratione rem totam! Alias aliquid amet animi consequatur debitis dignissimos distinctio dolore dolores eaque eveniet excepturi exercitationem impedit iste labore laudantium mollitia nemo, placeat porro possimus quia quidem sed soluta vel veritatis voluptas. Accusantium at corporis cum deserunt ea et incidunt minus sed tempora vitae. A architecto eius id maxime minima nostrum officia! Ab adipisci, architecto assumenda atque eos ex maiores minus non odit omnis, quas quasi repudiandae rerum vero voluptatum. Accusantium commodi corporis cumque, dolore error explicabo facere facilis fugiat hic illo ipsa iste iure non obcaecati odit similique ullam? A ab corporis doloribus eveniet expedita fugit hic, id laudantium molestiae nisi non numquam perspiciatis praesentium quae quas quia quis recusandae sint suscipit velit! A debitis, eaque enim esse in incidunt maiores non perspiciatis sed similique tempora tenetur veniam voluptate. Accusantium adipisci architecto, atque commodi corporis culpa dicta doloribus in libero magni nesciunt nobis omnis placeat praesentium quas repellendus repudiandae, similique sunt ullam, vero. Amet architecto et hic molestiae mollitia odio repellat sint? Ab ad amet animi assumenda consequatur culpa deserunt dolores dolorum error exercitationem impedit inventore labore laboriosam libero minima minus modi mollitia nesciunt nisi quam quisquam quod ratione, sed sint temporibus voluptatem voluptatum! Ab amet aperiam at autem blanditiis cumque deserunt doloribus ducimus eos fugiat id ipsa iste laboriosam magni maiores minima modi nam, natus nesciunt nostrum numquam omnis optio porro quaerat quam quasi quia quidem reprehenderit, sit tempore unde voluptas voluptatibus voluptatum? Aperiam aspernatur, atque beatae commodi consequuntur dolorem, ea eaque hic labore nisi odio praesentium ratione soluta sunt voluptatum! Aperiam dicta distinctio eos eum harum laudantium recusandae suscipit veniam. At beatae deserunt dignissimos eligendi est laborum nam quidem quis temporibus voluptate. Accusantium ad aliquid culpa, deserunt dolore dolorem dolores earum esse fuga, fugit impedit incidunt ipsam iste labore molestiae nam non pariatur possimus quia quidem quis quisquam quod quos voluptates voluptatibus! Aperiam corporis culpa cupiditate deserunt ea enim error eveniet fugit illo ipsa iusto modi molestiae nesciunt nulla officiis omnis possimus qui quia quisquam reprehenderit similique, sint veniam. Accusamus consequuntur dolores eum ex ipsa ipsam laborum laudantium non nostrum numquam obcaecati officia, quae quasi quidem quis veniam voluptate. Beatae cum deleniti dignissimos distinctio dolore dolorum eligendi est expedita facere facilis harum hic inventore, ipsam ipsum nihil non nulla placeat praesentium provident quasi rem rerum sapiente suscipit tempora, vero. Deserunt dolor eligendi fuga ipsa iure laboriosam recusandae. Ab eveniet fugiat minima natus quibusdam? At dolorum earum eius exercitationem illum impedit laborum necessitatibus optio, perspiciatis ratione recusandae similique sunt voluptatem! Ab excepturi molestiae nihil unde.
-        </div>
-    </div>
 
         <div class="my-8">
-        <h4 class="font-bold text-xl mb-1 text-brand-tertiary">Lorem ipsum dolor sit amet.</h4>
-        <div class="slider-6 mx-auto">
-            <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
+            <h4 class="font-bold text-xl mb-1 text-brand-tertiary">Lorem ipsum dolor sit amet.</h4>
+            <div class="slider-6 mx-auto">
+                {% for product in related_products %}
+                    <div class="slider-Div product-card">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                            <p class="product-card-title">{{ product.title }}</p>
+                        </a>
+                        <div class="flex items-center justify-center mb-4 quantityContainer">
+                            <div class="text-black/60 p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 quantityBtn quantityMinus cursor-pointer hover:bg-black hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </div>
+                            <input type="number" name="quantityInput" value="1"
+                                   class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2 quantityInput">
+                            <div class="text-black/60 p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0 quantityBtn quantityPlus cursor-pointer hover:bg-black hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     class="" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
                     </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                      <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
-                        <div class="slider-Div product-card">
-                <img src="https://images.apollo247.in/pub/media/catalog/product/m/a/mam0436-1-sep23.jpg?tr=w-250,q-80,f-webp,c-at_max" alt="" class="product-card-image">
-                <p class="product-card-title">Lorem ipsum dolor sit amet, consectetur.</p>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                        </svg>
-                    </div>
-                    <input type="number" name="quantityInput" value="1" class="p-1.5 text-sm text-center w-6/12 border-t-2 border-b-2">
-                    <div class="p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-black/60" viewBox="0 0 16 16">
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </div>
-                </div>
-                <button class="addToCartBtn">Add to cart</button>
-            </div>
+                {% endfor %}
 
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 {% endblock content %}

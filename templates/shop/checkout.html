@@ -2,48 +2,52 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full flex items-start flex-wrap-reverse md:flex-nowrap ">
-    <div class="my-8 md:my-0 md:p-6 xl:p-10 md:min-h-screen border-r-2 border-brand-gray basis-full md:basis-[52%] lg:basis-[60%]">
-        <form action="{% url 'shop:checkout' %}" method="post" id="checkoutForm" class="md:ml-auto xl:w-8/12 px-2 md:px-0">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="w-full bg-brand-primary font-semibold p-3 rounded text-white">Submit</button>
-        </form>
-    </div>
-    <div class="pb-8 md:p-6 lg:p-10 bg-[#FAFAFA] md:min-h-screen basis-full md:basis-[48%] lg:basis-[40%]">
+    <div class="w-full flex items-start flex-wrap-reverse md:flex-nowrap ">
+        <div class="my-8 md:my-0 md:p-6 xl:p-10 md:min-h-screen border-r-2 border-brand-gray basis-full md:basis-[52%] lg:basis-[60%]">
+            <form action="{% url 'shop:checkout' %}" method="post" id="checkoutForm"
+                  class="md:ml-auto xl:w-8/12 px-2 md:px-0">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="w-full bg-brand-primary font-semibold p-3 rounded text-white">Submit
+                </button>
+            </form>
+        </div>
+        <div class="pb-8 md:p-6 lg:p-10 bg-[#FAFAFA] md:min-h-screen basis-full md:basis-[48%] lg:basis-[40%]">
 
             <div class="md:mr-auto xl:w-8/12 px-2 md:px-0">
                 <div class="flex flex-col gap-4 mb-6">
-                {% for cartItem in request.cart.items.all %}
-                    <div class="flex gap-2 items-center border-b-2 py-2">
-                        <img src="http://127.0.0.1:8000/media/products/2023/10/08/square_jpg.jpg" alt="" style="max-width:120px">
-                        <div class="">
-                            <p class="font-semibold">Lorem ipsum dolor sit.</p>
-                            <p class="font-semibold text-brand-primary mt-2">4 x 599     ден</p>
+                    {% for cartItem in request.cart.items.all %}
+                        <div class="flex gap-2 items-center border-b-2 py-2">
+                            <img src="http://127.0.0.1:8000/media/products/2023/10/08/square_jpg.jpg" alt=""
+                                 style="max-width:120px">
+                            <div class="">
+                                <p class="font-semibold">{{ cartItem.product.title }}</p>
+                                <p class="font-semibold text-brand-primary mt-2">{{ cartItem.quantity }}
+                                    x {{ cartItem.price }} ден</p>
+                            </div>
                         </div>
+
+
+                    {% endfor %}
+                </div>
+                <div class="flex flex-col gap-2 px-2 md:px-0">
+                    <div class="flex items-center justify-between">
+                        <p class="">Цена</p>
+                        <p class="font-semibold">{{ request.cart.total_price }} ден</p>
                     </div>
-
-
-                {% endfor %}
-            </div>
-            <div class="flex flex-col gap-2 px-2 md:px-0">
-                <div class="flex items-center justify-between">
-                    <p class="">Цена</p>
-                    <p class="font-semibold">2396 ден</p>
-                </div>
-                <div class="flex items-center justify-between">
-                    <p class="">Достава</p>
-                    <p class="font-semibold">0 ден</p>
-                </div>
-                <div class="flex items-center justify-between">
-                    <p class="text-lg">Вкупно</p>
-                    <p class="font-bold text-xl text-brand-primary">2396 ден</p>
+                    <div class="flex items-center justify-between">
+                        <p class="">Достава</p>
+                        <p class="font-semibold">130 ден</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="text-lg">Вкупно</p>
+                        <p class="font-bold text-xl text-brand-primary">{{ request.cart.total_with_shipping }} ден</p>
+                    </div>
                 </div>
             </div>
-            </div>
 
+        </div>
     </div>
-</div>
 
 
 {% endblock content %}

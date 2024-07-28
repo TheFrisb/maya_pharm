@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
 from transliterate import translit
 
 
@@ -18,6 +19,16 @@ class Category(models.Model):
         blank=True,
         verbose_name="Припаѓа на",
         related_name="subcategories",
+    )
+    image = ProcessedImageField(
+        upload_to="categories/%Y/%m/%d/",
+        verbose_name="Слика",
+        blank=True,
+        null=True,
+        options={"quality": 80, "optimize": True},
+        processors=[
+            ResizeToFit(width=200, height=200, upscale=False),
+        ],
     )
     slug = models.SlugField(blank=True)
 
@@ -48,6 +59,16 @@ class Category(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length=200, verbose_name="Име")
+    image = ProcessedImageField(
+        upload_to="brands/%Y/%m/%d/",
+        verbose_name="Лого",
+        blank=True,
+        null=True,
+        options={"quality": 80, "optimize": True},
+        processors=[
+            ResizeToFit(width=180, height=100, upscale=False),
+        ],
+    )
     slug = models.SlugField(blank=True)
 
     def save(self, *args, **kwargs):
@@ -79,6 +100,7 @@ class Product(models.Model):
     categories = models.ManyToManyField(
         Category, related_name="products", verbose_name="Категории"
     )
+
     brand = models.ForeignKey(
         Brand,
         on_delete=models.CASCADE,
@@ -96,7 +118,7 @@ class Product(models.Model):
         verbose_name="Краток опис", blank=True, null=True, config_name="default"
     )
     long_desc = CKEditor5Field(
-        verbose_name="Долг опис", blank=True, null=True, config_name="default"
+        verbose_name="Начин на употреба", blank=True, null=True, config_name="default"
     )
     slug = models.SlugField(blank=True, max_length=350)
 
