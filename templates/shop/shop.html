@@ -1,54 +1,21 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 {% block content %}
-    <!--<div class="container-fluid flex items-center justify-center flex-col gap-2 bg-gray-300/70 py-6">-->
-    <!--&lt;!&ndash;    <div class="flex items-center justify-center flex-col">&ndash;&gt;-->
-    <!--&lt;!&ndash;        <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[64px]">&ndash;&gt;-->
-    <!--&lt;!&ndash;        <div class="flex items-center justify-center flex-col relative top-[-5px]">&ndash;&gt;-->
-    <!--&lt;!&ndash;            <p class="text-xl font-bold text-brand-primary">Maya pharm</p>&ndash;&gt;-->
-    <!--&lt;!&ndash;            <p class="text-xs italic font-medium text-brand-primary text-center relative top-[-1px]">Smart pharmacy</p>&ndash;&gt;-->
-    <!--&lt;!&ndash;        </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;    </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;    <div class="flex items-center w-8/12 justify-center">&ndash;&gt;-->
-    <!--&lt;!&ndash;        <div class="flex items-center justify-center bg-white p-3 rounded-l">&ndash;&gt;-->
-    <!--&lt;!&ndash;            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 " viewBox="0 0 16 16">&ndash;&gt;-->
-    <!--&lt;!&ndash;                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;            </svg>&ndash;&gt;-->
-    <!--&lt;!&ndash;        </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;        <input type="text" name="searchInput" class="h-[56px] rounded-r grow max-w-xl" id="searchInput">&ndash;&gt;-->
-    <!--&lt;!&ndash;    </div>&ndash;&gt;-->
-    <!--</div>-->
+
 
     <div class="container mx-auto px-2 md:px-0">
-        <div class="my-8">
-            <div class="slider-3 mx-auto">
-                <div class="slider-Div sliderShowcase">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/m/i/millet_horlicks_web_1.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
-                <div class="slider-Div">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/d/r/dr_morepen_deals.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
-                <div class="slider-Div">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/s/k/skin_care_offers_web_8.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
-                <div class="slider-Div">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/n/i/nivea_winter_web.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
-                <div class="slider-Div">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/n/i/nivea_winter_web.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
-                <div class="slider-Div">
-                    <img src="https://images.apollo247.in/pub/media/magestore/bannerslider/images/b/a/baby_diapers_web_3.jpg?tr=w-400,q-80,f-webp,c-at_max"
-                         alt="" class="w-full">
-                </div>
+        {% if redirect_images %}
+            <div class="my-8">
+                <div class="slider-3 mx-auto">
+                    {% for image in redirect_images %}
+                        <a class="slider-Div" href="{{ image.url }}">
+                            <img src="{{ image.image.url }}" alt="" class="w-full">
+                        </a>
+                    {% endfor %}
 
+                </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="my-8">
             <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">Продукти</h4>
@@ -75,7 +42,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Додади во кошничка</button>
                     </div>
                 {% endfor %}
             </div>
@@ -88,6 +55,15 @@
                     <a class="slider-Div slider-category-list group"
                        href="{% url 'shop:category_page' slug=category.slug %}">
                         <img src="
+
+
+
+
+
+
+
+
+
 
 
 
@@ -128,7 +104,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Додади во кошничка</button>
                     </div>
                 {% endfor %}
             </div>
@@ -215,7 +191,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Додади во кошничка</button>
                     </div>
                 {% endfor %}
             </div>

@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -134,6 +136,10 @@ class Product(models.Model):
             self.slug = unique_slug
         super().save(*args, **kwargs)
 
+        for category in self.categories.all():
+            if category.parent and category.parent not in self.categories.all():
+                self.categories.add(category.parent)
+
     def __str__(self):
         return f"{self.title}"
 
@@ -161,6 +167,9 @@ class Order(models.Model):
     shipping_address = models.CharField(max_length=255, verbose_name="Адреса")
     city = models.CharField(max_length=255, default="Strumica", verbose_name="Град")
     phone_number = models.CharField(max_length=15, verbose_name="Телефонски број")
+    tracking_number = models.CharField(
+        max_length=50, blank=True, null=True, verbose_name="Број за пратка"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Креиран во")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Модифициран во")
@@ -186,8 +195,11 @@ class Order(models.Model):
     def setSubtotalPrice(self, subtotal):
         self.subtotal_price = subtotal
 
-    def setTotalPrice(self, total):
-        self.total_price = total
+    def setTotalPrice(self, total, free_shipping):
+        if free_shipping:
+            self.total_price = total
+        else:
+            self.total_price = total + 130
 
     def getFullName(self):
         return f"{self.first_name} {self.last_name}"
@@ -202,6 +214,10 @@ class Order(models.Model):
 
     def set_to_pending(self):
         self.status = "pending"
+        self.save()
+
+    def create_tracking_number(self):
+        self.tracking_number = uuid4()
         self.save()
 
     class Meta:
@@ -245,3 +261,24 @@ class OrderItem(models.Model):
     class Meta:
         verbose_name = "Порачен продукт"
         verbose_name_plural = "Порачени продукти"
+
+
+class RedirectImage(models.Model):
+    image = ProcessedImageField(
+        upload_to="redirects/%Y/%m/%d/",
+        verbose_name="Слика",
+        blank=True,
+        null=True,
+        options={"quality": 80, "optimize": True},
+        processors=[
+            ResizeToFit(width=500, height=240, upscale=False),
+        ],
+    )
+    url = models.URLField(verbose_name="URL")
+
+    def __str__(self):
+        return self.url
+
+    class Meta:
+        verbose_name = "Redirect"
+        verbose_name_plural = "Redirects"

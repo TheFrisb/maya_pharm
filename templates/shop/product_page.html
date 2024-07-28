@@ -9,39 +9,43 @@
             <div class="basis-full md:basis-6/12 flex flex-col items-start justify-between">
                 <div class="w-full">
                     <h2 class="font-semibold text-2xl mb-4">{{ product.title }}</h2>
-{#                    <p class="mb-4">#}
-{#                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consectetur debitis deserunt#}
-{#                        esse et, explicabo fugiat hic maiores modi molestiae mollitia nobis numquam omnis quaerat quam#}
-{#                        quo recusandae sed sint suscipit voluptas. Deleniti deserunt dolor id iure soluta! Aliquam#}
-{#                        dolores magni possimus provident quam quas sequi? Autem explicabo neque quas.#}
-{#                    </p>#}
+                    {#                    <p class="mb-4">#}
+                    {#                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consectetur debitis deserunt#}
+                    {#                        esse et, explicabo fugiat hic maiores modi molestiae mollitia nobis numquam omnis quaerat quam#}
+                    {#                        quo recusandae sed sint suscipit voluptas. Deleniti deserunt dolor id iure soluta! Aliquam#}
+                    {#                        dolores magni possimus provident quam quas sequi? Autem explicabo neque quas.#}
+                    {#                    </p>#}
                 </div>
                 <div class="w-full">
                     <p class="font-bold text-brand-primary mb-4 text-2xl "><span
                             class="text-3xl">{{ product.sale_price }}</span> ден</p>
                     <p class="text-sm text-black/60 mb-1">Вклучен данок</p>
-                    <div class="flex items-center justify-center w-full gap-2 md:gap-4 mb-4">
-                        <div class="flex items-center">
-                            <div class="p-3 bg-white rounded-tl-[50%] rounded-bl-[50%]">
+                    <div class="flex items-center justify-between w-full gap-2 md:gap-4 mb-4 flex-wrap">
+                        <div class="flex items-center justify-center quantityContainer basis-3/12">
+                            <div class="text-black/60 p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 quantityBtn quantityMinus cursor-pointer hover:bg-black hover:text-white h-12 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                     class="bi bi-dash" viewBox="0 0 16 16">
+                                     class="" viewBox="0 0 16 16">
                                     <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                 </svg>
                             </div>
-                            <input type="number" name="quantityInput" value="1" class="p-3 text-center w-6/12">
-                            <div class="p-3 bg-white rounded-tr-[50%] rounded-br-[50%]">
+                            <input type="number" name="quantityInput" value="1"
+                                   class="p-1.5 text-sm text-center w-8/12 border-t-2 border-b-2 quantityInput h-12">
+                            <div class="text-black/60 p-1 bg-white rounded-tr-[50%] rounded-br-[50%] border-2 border-l-0 quantityBtn quantityPlus cursor-pointer hover:bg-black hover:text-white h-12 flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                     class="bi bi-plus" viewBox="0 0 16 16">
+                                     class="" viewBox="0 0 16 16">
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                 </svg>
                             </div>
                         </div>
-                        <button class="bg-brand-primary w-full text-sm md:text-base text-white font-semibold rounded-lg h-12 px-2">
+                        <button class="bg-brand-primary w-full text-sm md:text-base text-white font-semibold rounded-lg h-12 px-2 addToCartBtn basis-8/12"
+                                data-product-id="{{ product.id }}">
                             Додади во кошничка
                         </button>
+                        <button class="bg-brand-tertiary w-full text-white font-semibold rounded-lg h-14 px-2 addToCartBtn goToCheckoutBtn basis-full"
+                                data-product-id="{{ product.id }}">Купи веднаш
+                        </button>
                     </div>
-                    <button class="bg-brand-tertiary w-full text-white font-semibold rounded-lg h-14 px-2">Buy it now
-                    </button>
+
                 </div>
             </div>
         </div>
@@ -92,7 +96,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Add to cart</button>
+                        <button class="addToCartBtn" data-product-id="{{ product.id }}">Додади во кошничка</button>
                     </div>
                 {% endfor %}
 

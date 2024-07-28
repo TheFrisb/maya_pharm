@@ -100,6 +100,10 @@ $(document).ready(function () {
         'quantity': quantity,
       }),
       success: function (response) {
+        if (button.hasClass("goToCheckoutBtn")) {
+          window.location.href = '/checkout/';
+          return;
+        }
         addCartItem(response.cartItem);
         updateCartTotals(response.cart)
         showCart();

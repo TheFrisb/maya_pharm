@@ -2,81 +2,83 @@
 {% load static %}
 {% block content %}
 
-<div class="w-full flex items-start flex-wrap md:flex-nowrap">
-    <div class="my-8 md:my-0 md:p-6 xl:p-10 md:min-h-screen border-r-2 border-brand-gray basis-full md:basis-[52%] lg:basis-[60%]">
-        <div class="lg:w-10/12 xl:w-6/12 md:ml-auto px-2">
-            <div class="flex items-center gap-3 mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="text-brand-primary" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-            </svg>
-            <div>
-                <p class="text-black/60 text-sm">Број на порачка: #473261</p>
-                <p class="text-lg font-medium">Ви благодариме Aleksandar!</p>
-            </div>
-        </div>
-        <div class="border-2 rounded-lg px-2">
-            <h3 class="text-lg font-medium p-4 border-b-2">Вашата нарачка е потврдена</h3>
-            <div class="p-4">
-                <h4 class="font-medium mb-2">Контакт информации</h4>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Име и презиме:</p>
-                    <p class="font-medium">Aleksandar Bedjovski</p>
+    <div class="w-full flex items-start flex-wrap md:flex-nowrap">
+        <div class="my-8 md:my-0 md:p-6 xl:p-10 md:min-h-screen border-r-2 border-brand-gray basis-full md:basis-[52%] lg:basis-[60%]">
+            <div class="lg:w-10/12 xl:w-6/12 md:ml-auto px-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor"
+                         class="text-brand-primary" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+                    <div>
+                        <p class="text-black/60 text-sm">Код на порачка: #{{ order.tracking_number }}</p>
+                        <p class="text-lg font-medium">Ви благодариме <span
+                                class="capitalize">{{ order.first_name }}</span>!</p>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Адреса:</p>
-                    <p class="font-medium">Leninova 99 Lamela 2/23</p>
-                </div>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Град:</p>
-                    <p class="font-medium">Strumica</p>
-                </div>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Поштенски код:</p>
-                    <p class="font-medium">2400</p>
-                </div>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Телефонски број:</p>
-                    <p class="font-medium">078272681</p>
-                </div>
-                <div class="flex items-center gap-2 text-sm mb-1">
-                    <p>Начин на плаќање:</p>
-                    <p class="font-medium">Плаќање при достава</p>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    <div class="py-8 md:p-6 lg:p-10 bg-[#FAFAFA] md:min-h-screen basis-full md:basis-[48%] lg:basis-[40%]">
-
-            <div class="md:mr-auto xl:w-8/12 px-2">
-                <div class="flex flex-col gap-4 mb-6">
-                <div class="flex gap-2 items-center border-b-2 py-2">
-                        <img src="http://127.0.0.1:8000/media/products/2023/10/08/square_jpg.jpg" alt="" class="rounded-lg" style="max-width:120px">
-                        <div class="">
-                            <p class="font-semibold">Lorem ipsum dolor sit.</p>
-                            <p class="font-semibold text-brand-primary mt-2">4 x 599     ден</p>
+                <div class="border-2 rounded-lg px-2">
+                    <h3 class="text-lg font-medium p-4 border-b-2">Вашата нарачка е потврдена</h3>
+                    <div class="p-4">
+                        <h4 class="font-medium mb-2">Контакт информации</h4>
+                        <div class="flex items-center gap-2 text-sm mb-1">
+                            <p>Име и презиме:</p>
+                            <p class="font-medium capitalize">{{ order.first_name }} {{ order.last_name }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm mb-1">
+                            <p>Адреса:</p>
+                            <p class="font-medium">{{ order.shipping_address }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm mb-1">
+                            <p>Град:</p>
+                            <p class="font-medium">{{ order.city }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm mb-1">
+                            <p>Телефонски број:</p>
+                            <p class="font-medium">{{ order.phone_number }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm mb-1">
+                            <p>Начин на плаќање:</p>
+                            <p class="font-medium">Плаќање при достава</p>
                         </div>
                     </div>
-            </div>
-            <div class="flex flex-col gap-2 px-2">
-                <div class="flex items-center justify-between">
-                    <p class="">Цена</p>
-                    <p class="font-semibold">{{ request.cart.get_cart_total }} ден</p>
-                </div>
-                <div class="flex items-center justify-between">
-                    <p class="">Достава</p>
-                    <p class="font-semibold">0 ден</p>
-                </div>
-                <div class="flex items-center justify-between">
-                    <p class="text-lg">Вкупно</p>
-                    <p class="font-bold text-xl text-brand-primary">{{ request.cart.get_cart_total }} ден</p>
                 </div>
             </div>
+        </div>
+        <div class="py-8 md:p-6 lg:p-10 bg-[#FAFAFA] md:min-h-screen basis-full md:basis-[48%] lg:basis-[40%]">
+
+            <div class="md:mr-auto xl:w-8/12 px-2">
+                {% for item in order.items.all %}
+                    <div class="flex flex-col gap-4 mb-6">
+                        <div class="flex gap-2 items-center border-b-2 py-2">
+                            <img src="{{ item.product.thumbnail.url }}" alt=""
+                                 class="rounded-lg" style="max-width:120px">
+                            <div class="">
+                                <p class="font-semibold">{{ item.product.title }}</p>
+                                <p class="font-semibold text-brand-primary mt-2">{{ item.quantity }} x {{ item.price }}
+                                    ден</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="flex flex-col gap-2 px-2">
+                    <div class="flex items-center justify-between">
+                        <p class="">Цена</p>
+                        <p class="font-semibold">{{ order.subtotal_price }} ден</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="">Достава</p>
+                        <p class="font-semibold">130 ден</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="text-lg">Вкупно</p>
+                        <p class="font-bold text-xl text-brand-primary">{{ order.total_price }} ден</p>
+                    </div>
+                </div>
             </div>
 
+        </div>
     </div>
-</div>
 
 
 {% endblock content %}

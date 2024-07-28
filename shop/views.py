@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from cart.middleware import CartMiddleware
 from .forms import CheckoutForm
-from .models import Product, Order, Category, Brand
+from .models import Product, Order, Category, Brand, RedirectImage
 
 
 def shop_home(request):
@@ -18,6 +18,7 @@ def shop_home(request):
         "vitamin_category": Category.objects.filter(
             slug="vitamini-i-suplementi"
         ).first(),
+        "redirect_images": RedirectImage.objects.all(),
     }
     return render(request, "shop/shop.html", context)
 
@@ -66,6 +67,9 @@ def brand_view(request, slug):
 
 
 def checkout(request):
+    if request.cart.items_count == 0:
+        return redirect("shop:shop_home")
+
     if request.method == "POST":
         middleware = CartMiddleware(get_response=None)
         post_form = CheckoutForm(request.POST)
@@ -85,20 +89,26 @@ def checkout(request):
         cart.delete()
         middleware.get_cart(request)
         new_order.setSubtotalPrice(cartitems_total)
-        new_order.setTotalPrice(cartitems_total)
+        new_order.setTotalPrice(cartitems_total, free_shipping=False)
+        new_order.create_tracking_number()
         new_order.save()
-        return redirect("shop:thank_you_page")
+        return redirect(
+            "shop:thank_you_page", tracking_number=new_order.tracking_number
+        )
 
     else:
-        if request.cart.items_count == 0:
-            return redirect("shop:shop_home")
         form = CheckoutForm()
         context = {"form": form, "title": "Кон нарачка"}
         return render(request, "shop/checkout.html", context)
 
 
-def thank_you_page(request):
-    context = {"title": "Ви благодариме за вашата нарачка!"}
+def thank_you_page(request, tracking_number):
+    order = (
+        Order.objects.filter(tracking_number=tracking_number)
+        .prefetch_related("items", "items__product")
+        .first()
+    )
+    context = {"title": "Ви благодариме за вашата нарачка!", "order": order}
     return render(request, "shop/thank_you_page.html", context)
 
 
