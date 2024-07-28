@@ -112,7 +112,12 @@ class Product(models.Model):
         null=True,
     )
     thumbnail = ProcessedImageField(
-        upload_to="products/%Y/%m/%d/", verbose_name="Слика", blank=True, null=True
+        upload_to="products/%Y/%m/%d/",
+        verbose_name="Слика",
+        blank=True,
+        null=True,
+        processors=[ResizeToFit(width=600, height=600, upscale=False)],
+        options={"quality": 80, "optimize": True},
     )
     title = models.CharField(max_length=256)
     sale_price = models.IntegerField(verbose_name="Цена")
