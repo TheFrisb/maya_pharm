@@ -8,6 +8,7 @@ from .models import Product, Order, Category, Brand, RedirectImage
 
 
 def shop_home(request):
+    print(request)
     context = {
         "products": Product.objects.all()[0:24],
         "title": "Почетна",

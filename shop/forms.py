@@ -1,91 +1,101 @@
-from django import forms
 import re
+
+from django import forms
 
 
 class CheckoutForm(forms.Form):
-    PAYMENT_CHOICES = (
-        ('card', 'Credit card'),
-        ('cash', 'Cash on delivery')
-    )
+    PAYMENT_CHOICES = [("cash", "Плати при достава")]
 
     first_name = forms.CharField(
         min_length=3,
         max_length=50,
         required=True,
-        label='First Name',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'First Name',
-            'class': 'checkoutInput',
-        })
+        label="Име",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Вашето Име",
+                "class": "checkoutInput",
+            }
+        ),
     )
 
     last_name = forms.CharField(
         min_length=3,
         max_length=50,
         required=True,
-        label='Last Name',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Last Name',
-            'class': 'checkoutInput',
-        })
+        label="Презиме",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Вашето Презиме",
+                "class": "checkoutInput",
+            }
+        ),
     )
 
     shipping_address = forms.CharField(
         min_length=3,
         max_length=50,
         required=True,
-        label='Address',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Address',
-            'class': 'checkoutInput',
-        })
+        label="Адреса",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Адреса на достава",
+                "class": "checkoutInput",
+            }
+        ),
     )
     city = forms.CharField(
         min_length=2,
         max_length=50,
         required=True,
-        label='City',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'City',
-            'class': 'checkoutInput',
-        })
+        label="Град",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Град на достава",
+                "class": "checkoutInput",
+            }
+        ),
     )
     postal_code = forms.CharField(
         min_length=3,
         max_length=10,
         required=True,
-        label='Postal Code',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Postal Code',
-            'class': 'checkoutInput',
-        })
+        label="Поштенски Код",
+        widget=forms.TextInput(
+            attrs={
+                "class": "checkoutInput",
+            }
+        ),
     )
 
     phone_number = forms.CharField(
         min_length=3,
         max_length=15,
         required=True,
-        label='Phone Number',
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Phone Number',
-            'class': 'checkoutInput',
-        })
+        label="Телефонски број",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Вашиот телефонски број",
+                "class": "checkoutInput",
+            }
+        ),
     )
 
     payment_method = forms.ChoiceField(
         choices=PAYMENT_CHOICES,
         required=True,
-        label='Payment Method',
-        widget=forms.RadioSelect(attrs={'class': 'payment_method_radio'}),
+        label="Payment Method",
+        widget=forms.RadioSelect(attrs={"class": "payment_method_radio"}),
+        initial="cash",
     )
 
     def clean_phone_number(self):
-        phone_number = self.cleaned_data.get('phone_number')
+        phone_number = self.cleaned_data.get("phone_number")
 
         # Check if phone number is valid. You might want to use a more robust
         # regex for real-world usage.
-        if not re.match(r'^\+?1?\d{9,15}$', phone_number):
-            raise forms.ValidationError('Invalid phone number')
+        if not re.match(r"^\+?1?\d{9,15}$", phone_number):
+            raise forms.ValidationError("Invalid phone number")
 
         return phone_number
 
@@ -97,5 +107,5 @@ class CheckoutForm(forms.Form):
         super(CheckoutForm, self).__init__(*args, **kwargs)
         for name, field in self.fields.items():
             if self.errors.get(name):
-                existing_class = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = f"{existing_class} error".strip()
+                existing_class = field.widget.attrs.get("class", "")
+                field.widget.attrs["class"] = f"{existing_class} error".strip()
