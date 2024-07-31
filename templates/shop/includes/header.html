@@ -16,11 +16,7 @@
 {% else %}
     <div id="header" class="bg-gray-300/70 py-6 px-2">
         <div class="container mx-auto w-full flex items-center justify-between">
-            <div class="hidden md:block">
-                <a class="max-w-[80px]" href="{% url 'shop:shop_home' %}">
-                    <img src="{% static 'assets/images/pharma_logo.png' %}" alt="" class="max-w-[80px]">
-                </a>
-            </div>
+
             <div class="flex items-center justify-center flex-col gap-2 md:grow">
                 <a class="flex items-center justify-start relative gap-2 xl:mb-2" href="{% url 'shop:shop_home' %}">
                     <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[52px] md:max-w-[84px]">
