@@ -14,6 +14,9 @@
         </div>
     </div>
 {% else %}
+    <div class="w-full p-2">
+        <a href="#" class="text-brand-primary font-bold ml-0">Контакт</a>
+    </div>
     <div id="header" class="bg-gray-300/70 py-6 px-2">
         <div class="container mx-auto w-full flex items-center justify-between">
 
@@ -72,17 +75,18 @@
                         <a href="{{ category.get_absolute_url }}"
                            class="first-letter:uppercase font-bold text-white hover:text-[#dbdee3]">{{ category.name }}</a>
                         {% if category.subcategories.all %}
-                            <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-white z-[100]">
+                            <div class="absolute left-0 min-w-[200px] hidden mt-2 group-hover:block bg-white z-[100]">
                                 {% for subcategory in category.subcategories.all %}
-                                    <a class="py-2 cursor-pointer flex items-center justify-center text-center text-black border border-[#dbdee3]"
+                                    <a class="p-2 cursor-pointer flex items-center justify-center text-center text-black border border-[#dbdee3] first-letter:uppercase"
                                        href="{{ subcategory.get_absolute_url }}">
-                                        <p
-                                                class=" first-letter:uppercase">{{ subcategory.name }}</p>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                             fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-                                        </svg>
+                                        {{ subcategory.name }}
+                                        {#                                        <p#}
+                                        {#                                                class=" first-letter:uppercase">{{ subcategory.name }}</p>#}
+                                        {#                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"#}
+                                        {#                                             fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">#}
+                                        {#                                            <path fill-rule="evenodd"#}
+                                        {#                                                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>#}
+                                        {#                                        </svg>#}
                                     </a>
                                 {% endfor %}
                             </div>
