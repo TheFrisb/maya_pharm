@@ -1,6 +1,4 @@
-Todo:
-1. Opraj home page
-2. Opraj checkout i cart middleware
-3. Opraj footer
-4. Opraj search baro i za mobilen
-5. Opraj kategoriite
+1. Дали може да се направи сите слики од производи да имаат иста големина за да бидат сите копчиња „Додади во кошничка” во иста линија?
+3. Да се додаде категорија „Kонтакт” со информации како што се тука
+https://apteka.pluspharma.mk/majafarm
+

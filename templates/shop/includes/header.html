@@ -5,8 +5,8 @@
         <div class="container mx-auto p-4">
             <a class="flex items-center justify-start relative gap-2 mb-2" href="{% url 'shop:shop_home' %}">
                 <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
-                <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                    <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
+                <div class="flex items-start justify-center flex-col relative top-[-5px]">
+                    <p class="text-3xl font-bold text-brand-primary">Маја Фарм</p>
                     <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар на
                         вашето здравје</p>
                 </div>
@@ -17,40 +17,44 @@
     <div id="header" class="bg-gray-300/70 py-6 px-2">
         <div class="container mx-auto w-full flex items-center justify-between">
 
-            <div class="flex items-center justify-center flex-col gap-2 md:grow">
+            <div class="flex items-center justify-between  gap-2 md:grow">
                 <a class="flex items-center justify-start relative gap-2 xl:mb-2" href="{% url 'shop:shop_home' %}">
-                    <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[52px] md:max-w-[84px]">
-                    <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                        <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
+                    <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[74px] md:max-w-[120px]">
+                    <div class="flex items-start justify-center flex-col relative top-[-5px]">
+                        <p class="text-5xl font-bold text-brand-primary">Маја Фарм</p>
                         <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар
                             на вашето здравје</p>
                     </div>
                 </a>
-                <div class="hidden md:flex items-center w-8/12 justify-center group flex-wrap ">
-                    <div class="flex items-center justify-center bg-white p-3 rounded-l cursor-pointer hover:text-brand-primary ">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 "
+                <div class="hidden md:flex items-center w-8/12 justify-center group flex-wrap">
+                    <input type="text" name="searchInputDesktop"
+                           class="h-[56px] grow  px-2 focus:outline-brand-primary searchInput border border-black border-r-0"
+                           placeholder="Барај"
+                    >
+                    <div class="flex items-center justify-center p-3 cursor-pointer hover:text-brand-primary bg-brand-primary hover:bg-black border border-brand-primary border-l-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 text-[#dbdee3]"
                              viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </div>
-                    <input type="text" name="searchInputDesktop"
-                           class="h-[56px] rounded-tr rounded-b-none grow  px-2 focus:outline-brand-primary searchInput"
-                    >
-                    <div class="basis-full bg-white border-t-2 border-brand-primary/60 flex flex-col items-start justify-start gap-0.5 rounded-b-lg searchResultsContainer">
+                    <div class="basis-full bg-white border-t-2 border-b-brand-primary/60 flex flex-col items-start justify-start gap-0.5 rounded-b-lg searchResultsContainer">
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-center gap-4">
-                <div class="flex items-center justify-center relative cursor-pointer" id="cartIcon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                         class="text-brand-primary" viewBox="0 0 16 16">
-                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-                    </svg>
-                    <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl"
-                          id="cartQuantityContainer">{{ request.cart.items_count }}</span>
+            <div class="flex items-center justify-center gap-4 ml-0 md:ml-4">
+                <div class="flex items-end justify-center relative cursor-pointer gap-2" id="cartIcon">
+                    <div class="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                             class="text-brand-primary" viewBox="0 0 16 16">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                        </svg>
+                        <span class="w-4 h-4 text-center text-xs font-bold top-[-4px] right-[-10px] absolute bg-[#225e17] text-white rounded-xl"
+                              id="cartQuantityContainer">{{ request.cart.items_count }}</span>
+                    </div>
+                    <span class="text-sm text-brand-primary hidden md:block">Кошничка</span>
                 </div>
                 <div class="flex items-center justify-center md:hidden" id="menuIcon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
                          class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
                               d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -60,17 +64,17 @@
         </div>
 
     </div>
-    <div class="bg-brand-secondary hidden lg:block">
+    <div class="bg-brand-primary hidden lg:block">
         <div class="container mx-auto text-white">
             <div class="flex items-center justify-center">
                 {% for category in categories %}
-                    <div class="p-2 font-bold text-sm group relative z-[400]">
+                    <div class="p-2 text-sm group relative z-[400] border-r border-l border-[#dbdee3]">
                         <a href="{{ category.get_absolute_url }}"
-                           class=" first-letter:uppercase">{{ category.name }}</a>
+                           class="first-letter:uppercase font-bold text-white hover:text-[#dbdee3]">{{ category.name }}</a>
                         {% if category.subcategories.all %}
-                            <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-brand-tertiary rounded-bl-lg rounded-br-lg z-[100]">
+                            <div class="absolute left-0 min-w-[200px] hidden mt-2 p-2 group-hover:block bg-white z-[100]">
                                 {% for subcategory in category.subcategories.all %}
-                                    <a class="py-2 cursor-pointer flex items-center justify-between"
+                                    <a class="py-2 cursor-pointer flex items-center justify-center text-center text-black border border-[#dbdee3]"
                                        href="{{ subcategory.get_absolute_url }}">
                                         <p
                                                 class=" first-letter:uppercase">{{ subcategory.name }}</p>
@@ -129,7 +133,7 @@
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </div>
-                <input type="text" name="searchInput" placeholder="Пребарај производи"
+                <input type="text" name="searchInput" placeholder="Барај"
                        class="h-[42px] rounded-r grow px-2 searchInput">
                 <div class="basis-full bg-white border-t-2 border-brand-primary/60 flex flex-col items-start justify-start gap-0.5 rounded-b-lg searchResultsContainer">
                 </div>

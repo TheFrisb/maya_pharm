@@ -19,9 +19,9 @@ $(document).ready(function () {
       descriptions.forEach(desc => {
         if (desc.id === targetId) {
           desc.style.display = 'block';
-          toggle.classList.add('text-brand-tertiary');
+          toggle.classList.add('text-brand-primary');
         } else {
-          document.querySelector('[data-target="' + desc.id + '"]').classList.remove('text-brand-tertiary');
+          document.querySelector('[data-target="' + desc.id + '"]').classList.remove('text-brand-primary');
           desc.style.display = 'none';
         }
       });

@@ -28,7 +28,7 @@
             {% endif %}
 
             <div class="my-8">
-                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">Продукти</h4>
+                <h4 class="font-bold text-xl mb-1 text-brand-primary px-2">Продукти</h4>
                 <div class="slider-6 mx-auto">
                     {% for product in products %}
                         <div class="slider-Div product-card slick-slide">
@@ -58,57 +58,59 @@
                 </div>
             </div>
 
+            {#            <div class="my-8">#}
+            {#                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">Категории</h4>#}
+            {#                <div class="slider-6 mx-auto">#}
+            {#                    {% for category in categories %}#}
+            {#                        <a class="slider-Div slider-category-list group slick-slide"#}
+            {#                           href="{% url 'shop:category_page' slug=category.slug %}">#}
+            {#                            <img src="#}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {##}
+            {#                                    {% if category.image %}{{ category.image.url }}{% else %}https://w7.pngwing.com/pngs/605/679/png-transparent-pharmacy-medicine-maps-location-placeholder-pin-icon.png{% endif %}"#}
+            {#                                 alt=""#}
+            {#                                 class="product-card-image ">#}
+            {#                            <p class="product-card-title w-full h-full group-hover:text-brand-tertiary">{{ category.name }}</p>#}
+            {#                        </a>#}
+            {#                    {% endfor %}#}
+            {#                </div>#}
+            {#            </div>#}
+
+
             <div class="my-8">
-                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">Категории</h4>
-                <div class="slider-6 mx-auto">
-                    {% for category in categories %}
-                        <a class="slider-Div slider-category-list group slick-slide"
-                           href="{% url 'shop:category_page' slug=category.slug %}">
-                            <img src="
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    {% if category.image %}{{ category.image.url }}{% else %}https://w7.pngwing.com/pngs/605/679/png-transparent-pharmacy-medicine-maps-location-placeholder-pin-icon.png{% endif %}"
-                                 alt=""
-                                 class="product-card-image ">
-                            <p class="product-card-title w-full h-full group-hover:text-brand-tertiary">{{ category.name }}</p>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-
-
-            <div class="my-8">
-                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ promoted_category_first.name }}</h4>
+                <h4 class="font-bold text-xl mb-1 text-brand-primary px-2">{{ promoted_category_first.name }}</h4>
                 <div class="slider-6 mx-auto">
                     {% for product in promoted_category_first.products.all %}
                         <div class="slider-Div product-card slick-slide">
@@ -139,14 +141,14 @@
             </div>
 
             <div class="my-8">
-                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">Брендови</h4>
+                <h4 class="font-bold text-xl mb-1 text-brand-primary px-2">Брендови</h4>
                 <div class="slider-6 mx-auto ">
                     {% for brand in brands %}
                         <div class="slider-Div slider-category-list slick-slide">
                             <a href="{% url 'shop:brand_view' brand.slug %}"
                                class="flex items-center justify-center w-full h-full">
                                 {% if brand.image and brand.image.url %}
-                                    <img src="https://images.apollo247.in/pub/media/ves/brand/ampers_new_logo.jpg?tr=w-367.5,q-80,f-webp,c-at_max"
+                                    <img src="{{ brand.image.url }}"
                                          alt="" class="product-card-image w-full">
                                     <p class="product-card-title overflow-ellipsis overflow-hidden">{{ brand.name }}</p>
                                 {% else %}
@@ -195,7 +197,7 @@
             {#        </div>#}
 
             <div class="my-8">
-                <h4 class="font-bold text-xl mb-1 text-brand-tertiary px-2">{{ promoted_category_second.name }}</h4>
+                <h4 class="font-bold text-xl mb-1 text-brand-primary px-2">{{ promoted_category_second.name }}</h4>
                 <div class="slider-6 mx-auto">
                     {% for product in promoted_category_second.products.all %}
                         <div class="slider-Div product-card slick-slide">
