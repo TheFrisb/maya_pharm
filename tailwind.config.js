@@ -5,6 +5,7 @@ module.exports = {
     "./templates/**/**/*.html",
     "./static/**/js/*.js",
     "shop/static/shop/js/shop.js",
+    "./shop/static/shop/js/sliders.js",
   ],
   theme: {
     extend: {

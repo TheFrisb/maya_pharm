@@ -5,14 +5,13 @@
         <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 text-brand-primary">
             <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div class="sm:col-span-2">
-                    <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                        <div class="flex items-center justify-start relative gap-2 mb-2">
-                            <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
-                            <div class="flex items-center justify-center flex-col relative top-[-5px]">
-                                <p class="text-2xl font-bold text-brand-primary">Маја Фарм</p>
-                                <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">
-                                    Чувар на вашето здравје</p>
-                            </div>
+                    <a class="flex items-center justify-start relative gap-2 xl:mb-2" href="{% url 'shop:shop_home' %}">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[74px] md:max-w-[120px]">
+                        <div class="flex items-start justify-center flex-col relative top-[-5px]">
+                            <p class="text-5xl font-bold text-brand-primary">Маја Фарм</p>
+                            <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">
+                                Чувар
+                                на вашето здравје</p>
                         </div>
                     </a>
                     <div class="mt-6 lg:max-w-sm">

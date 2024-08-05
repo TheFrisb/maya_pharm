@@ -243,10 +243,10 @@ $(document).ready(function () {
 
           if (response.products && response.products.length > 0) {
             response.products.forEach(function (product) {
-              searchResultsContainer.append('<a href="' + product.url + '" class="font-bold text-brand-secondary hover:text-white hover:bg-brand-primary/80 p-2 w-full rounded-b-lg">' + product.title + '</a>');
+              searchResultsContainer.append('<a href="' + product.url + '" class="font-bold text-brand-secondary hover:text-white hover:bg-brand-primary/80 p-2 w-full ">' + product.title + '</a>');
             });
           } else {
-            searchResultsContainer.append('<p>Не пронајдовме резултати...</p>');
+            searchResultsContainer.append('<p class="text-brand-secondary p-2 w-full ">Не пронајдовме резултати...</p>');
           }
         },
         error: function (xhr, status, error) {

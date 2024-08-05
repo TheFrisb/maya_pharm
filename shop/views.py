@@ -59,6 +59,13 @@ def category_page(request, slug):
     return render(request, "shop/category_page.html", context)
 
 
+def search_page(request):
+    query = request.GET.get("query", "")
+    products = Product.objects.filter(title__icontains=query)
+    context = {"products": products, "title": f"Пребарување: {query}"}
+    return render(request, "shop/category_page.html", context)
+
+
 def brand_view(request, slug):
     brand = get_object_or_404(Brand.objects.prefetch_related("products"), slug=slug)
     context = {
@@ -123,3 +130,8 @@ def product_titles(request):
         for product in products
     ]
     return JsonResponse({"products": products_data})
+
+
+def contact_us(request):
+    context = {"title": "Контактирајте не"}
+    return render(request, "shop/contact_us.html", context)

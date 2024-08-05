@@ -3,21 +3,23 @@
 {% if request.path == checkout_url %}
     <div class="w-full border-b-2 bg-gray-300/70 ">
         <div class="container mx-auto p-4">
-            <a class="flex items-center justify-start relative gap-2 mb-2" href="{% url 'shop:shop_home' %}">
-                <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[84px]">
+            <a class="flex items-center justify-start relative gap-2 xl:mb-2" href="{% url 'shop:shop_home' %}">
+                <img src="{% static 'assets/images/logo.png' %}" alt="" class="max-w-[74px] md:max-w-[120px]">
                 <div class="flex items-start justify-center flex-col relative top-[-5px]">
-                    <p class="text-3xl font-bold text-brand-primary">Маја Фарм</p>
-                    <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар на
-                        вашето здравје</p>
+                    <p class="text-5xl font-bold text-brand-primary">Маја Фарм</p>
+                    <p class="text-sm italic font-medium text-brand-primary text-center relative top-[-1px]">Чувар
+                        на вашето здравје</p>
                 </div>
             </a>
         </div>
     </div>
 {% else %}
-    <div class="w-full p-2">
-        <a href="#" class="text-brand-primary font-bold ml-0">Контакт</a>
+    <div class="w-full p-2 bg-gray-300/70">
+        <div class="container flex items-center justify-end mx-auto">
+            <a href="{% url 'shop:contact_page' %}" class="text-brand-primary font-bold hover:text-brand-primary/70">Контакт</a>
+        </div>
     </div>
-    <div id="header" class="bg-gray-300/70 py-6 px-2">
+    <div id="header" class="bg-white py-6 px-2">
         <div class="container mx-auto w-full flex items-center justify-between">
 
             <div class="flex items-center justify-between  gap-2 md:grow">
@@ -29,20 +31,22 @@
                             на вашето здравје</p>
                     </div>
                 </a>
-                <div class="hidden md:flex items-center w-8/12 justify-center group flex-wrap">
-                    <input type="text" name="searchInputDesktop"
+                <form class="hidden md:flex items-center w-8/12 justify-center group flex-wrap" method="get"
+                      action="{% url 'shop:search_page' %}">
+                    <input type="text" name="query"
                            class="h-[56px] grow  px-2 focus:outline-brand-primary searchInput border border-black border-r-0"
                            placeholder="Барај"
                     >
-                    <div class="flex items-center justify-center p-3 cursor-pointer hover:text-brand-primary bg-brand-primary hover:bg-black border border-brand-primary border-l-0">
+                    <button type="submit"
+                            class="flex items-center justify-center p-3 cursor-pointer hover:text-brand-primary bg-brand-primary hover:bg-black ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 text-[#dbdee3]"
                              viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
+                    </button>
+                    <div class="basis-full flex flex-col items-start justify-start gap-0.5  searchResultsContainer bg-[#dbdee3]">
                     </div>
-                    <div class="basis-full bg-white border-t-2 border-b-brand-primary/60 flex flex-col items-start justify-start gap-0.5 rounded-b-lg searchResultsContainer">
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="flex items-center justify-center gap-4 ml-0 md:ml-4">
                 <div class="flex items-end justify-center relative cursor-pointer gap-2" id="cartIcon">
@@ -68,16 +72,16 @@
 
     </div>
     <div class="bg-brand-primary hidden lg:block">
-        <div class="container mx-auto text-white">
+        <div class="container mx-auto text-white ">
             <div class="flex items-center justify-center">
                 {% for category in categories %}
-                    <div class="p-2 text-sm group relative z-[400] border-r border-l border-[#dbdee3]">
+                    <div class="p-2 text-sm group relative z-[400] border-r border-l border-[#dbdee3] whitespace-nowrap overflow-ellipsis overflow-hidden">
                         <a href="{{ category.get_absolute_url }}"
-                           class="first-letter:uppercase font-bold text-white hover:text-[#dbdee3]">{{ category.name }}</a>
+                           class="first-letter:uppercase font-bold text-white hover:text-[#dbdee3] text-xs w-full h-full">{{ category.name }}</a>
                         {% if category.subcategories.all %}
                             <div class="absolute left-0 min-w-[200px] hidden mt-2 group-hover:block bg-white z-[100]">
                                 {% for subcategory in category.subcategories.all %}
-                                    <a class="p-2 cursor-pointer flex items-center justify-center text-center text-black border border-[#dbdee3] first-letter:uppercase"
+                                    <a class="p-2 cursor-pointer flex items-center justify-center text-center text-black border border-[#dbdee3] first-letter:uppercase text-xs w-full h-full"
                                        href="{{ subcategory.get_absolute_url }}">
                                         {{ subcategory.name }}
                                         {#                                        <p#}
@@ -102,25 +106,21 @@
         <div class="w-full">
             {% for category in categories %}
                 <div class="px-2 font-medium text-sm group relative w-full border-b border-brand-primary last-of-type:border-0 flex items-center justify-between flex-wrap">
-                    <a href="{{ category.get_absolute_url }}" class="">{{ category.name }}</a>
+                    <a href="{{ category.get_absolute_url }}" class="font-bold w-full h-full">{{ category.name }}</a>
                     {% if category.subcategories.all %}
-                        <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                            </svg>
-                        </div>
+
                         <div class="basis-full">
                             {% for subcategory in category.subcategories.all %}
-                                <div class="p-2 cursor-pointer flex items-center justify-between">
-                                    <a href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a>
+                                <a href="{{ subcategory.get_absolute_url }}"
+                                   class="p-2 cursor-pointer flex items-center justify-between">
+                                    <span
+                                            class="first-letter:uppercase">{{ subcategory.name }}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                               d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                                     </svg>
-                                </div>
+                                </a>
                             {% endfor %}
                         </div>
                     {% endif %}
@@ -129,20 +129,22 @@
         </div>
     </div>
     <div class="container my-2 px-2 md:hidden">
-        <div class="flex items-center justify-start gap-1">
+        <form class="flex items-center justify-start gap-1" method="get" action="{% url 'shop:search_page' %}">
             <div class="flex items-center justify-center grow flex-wrap ">
-                <div class="flex items-center justify-center bg-white p-3 rounded-l">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-[18px] w-[18px]"
+
+                <input type="text" name="query" placeholder="Барај"
+                       class="h-[42px] grow  px-2 focus:outline-brand-primary searchInput border border-black border-r-0">
+                <button class="flex items-center justify-center p-3 cursor-pointer hover:text-brand-primary bg-brand-primary hover:bg-black border border-brand-primary border-l-0 h-[42px] w-[42px]"
+                        type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-[18px] w-[18px] text-[#dbdee3]"
                          viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
-                </div>
-                <input type="text" name="searchInput" placeholder="Барај"
-                       class="h-[42px] rounded-r grow px-2 searchInput">
-                <div class="basis-full bg-white border-t-2 border-brand-primary/60 flex flex-col items-start justify-start gap-0.5 rounded-b-lg searchResultsContainer">
+                </button>
+                <div class="basis-full flex flex-col items-start justify-start gap-0.5  searchResultsContainer bg-[#dbdee3]">
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
 

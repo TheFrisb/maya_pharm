@@ -29,7 +29,7 @@ class Category(models.Model):
         null=True,
         options={"quality": 80, "optimize": True},
         processors=[
-            ResizeToFit(width=200, height=200, upscale=False),
+            ResizeToFit(width=200, height=200, mat_color="#FFFFFF"),
         ],
     )
     slug = models.SlugField(blank=True)
@@ -68,7 +68,7 @@ class Brand(models.Model):
         null=True,
         options={"quality": 80, "optimize": True},
         processors=[
-            ResizeToFit(width=180, height=100, upscale=False),
+            ResizeToFit(width=180, height=100, mat_color="#FFFFFF"),
         ],
     )
     slug = models.SlugField(blank=True)
@@ -116,9 +116,7 @@ class Product(models.Model):
         verbose_name="Слика",
         blank=True,
         null=True,
-        processors=[
-            ResizeToFit(width=600, height=600, upscale=True, mat_color="#FFFFFF")
-        ],
+        processors=[ResizeToFit(width=600, height=600, mat_color="#FFFFFF")],
         options={"quality": 80, "optimize": True},
     )
     title = models.CharField(max_length=256)
@@ -278,7 +276,7 @@ class RedirectImage(models.Model):
         null=True,
         options={"quality": 80, "optimize": True},
         processors=[
-            ResizeToFit(width=500, height=240, upscale=False),
+            ResizeToFit(width=500, height=240, mat_color="#FFFFFF"),
         ],
     )
     url = models.URLField(verbose_name="URL")
