@@ -2,6 +2,7 @@ import csv
 import os
 
 import django
+from django.core.files.base import ContentFile
 
 # Set up Django environment
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "maya_pharm.settings")
@@ -78,6 +79,19 @@ def import_order_items(file_path):
                 created_at=row["created_at"],
                 updated_at=row["updated_at"],
             )
+
+
+def re_process_images():
+    for product in Product.objects.all():
+        if product.thumbnail:
+            with open(product.thumbnail.path, "rb") as f:
+                content = f.read()
+
+            # Save the content back to the same field to trigger re-processing
+            product.thumbnail.save(
+                product.thumbnail.name, ContentFile(content), save=False
+            )
+            product.save()
 
 
 if __name__ == "__main__":
