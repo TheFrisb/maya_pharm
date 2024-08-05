@@ -1,3 +1,6 @@
+from datetime import datetime
+
+import pytz
 from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -133,5 +136,16 @@ def product_titles(request):
 
 
 def contact_us(request):
-    context = {"title": "Контактирајте не"}
+    pharmacy_is_open = False
+    skopje_tz = pytz.timezone("Europe/Skopje")
+    current_time = datetime.now(skopje_tz).time()
+
+    # Define the opening and closing times
+    opening_time = datetime.strptime("08:00", "%H:%M").time()
+    closing_time = datetime.strptime("21:00", "%H:%M").time()
+
+    if opening_time <= current_time <= closing_time:
+        pharmacy_is_open = True
+
+    context = {"title": "Контактирајте не", "pharmacy_is_open": pharmacy_is_open}
     return render(request, "shop/contact_us.html", context)
