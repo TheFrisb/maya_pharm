@@ -75,7 +75,7 @@
         <div class="container mx-auto text-white ">
             <div class="flex items-center justify-center">
                 {% for category in categories %}
-                    <div class="p-2 text-sm group relative z-[400] border-r border-l border-[#dbdee3] whitespace-nowrap overflow-ellipsis overflow-hidden">
+                    <div class="p-2 text-sm  relative z-[200] border-r border-l border-[#dbdee3] whitespace-nowrap group">
                         <a href="{{ category.get_absolute_url }}"
                            class="first-letter:uppercase font-bold text-white hover:text-[#dbdee3] text-xs w-full h-full">{{ category.name }}</a>
                         {% if category.subcategories.all %}
@@ -148,9 +148,9 @@
     </div>
 
 
-    <div class="container-fluid w-full h-full overflow-hidden fixed top-0 right-0 bg-black/70 z-[100]" id="overlay"
+    <div class="container-fluid w-full h-full overflow-hidden fixed top-0 right-0 bg-black/70 z-[290]" id="overlay"
          style="display:none!important;"></div>
-    <div class="fixed top-0 right-0 bg-white w-11/12 md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 h-full flex flex-col  ml-auto shadow-2xl shadow-black z-[150] scale-x-0 transition-transform origin-right"
+    <div class="fixed top-0 right-0 bg-white w-11/12 md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12 h-full flex flex-col  ml-auto shadow-2xl shadow-black z-[300] scale-x-0 transition-transform origin-right"
          id="sideCart">
         <div class="py-3 border-b-2">
             <div class="px-5 w-full flex justify-between items-center">

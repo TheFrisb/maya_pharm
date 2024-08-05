@@ -44,6 +44,10 @@ class Category(models.Model):
                 unique_slug = "{}-{}".format(slug_candidate, num)
                 num += 1
             self.slug = unique_slug
+
+        # capitalize first letter if not
+        if self.name[0].islower():
+            self.name = self.name.capitalize()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
