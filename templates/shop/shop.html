@@ -19,7 +19,7 @@
                     <div class="slider-3 mx-auto">
                         {% for image in redirect_images %}
                             <a class="slider-Div slick-slide" href="{{ image.url }}">
-                                <img src="{{ image.image.url }}" alt="" class="w-full">
+                                <img src="{{ image.image.url }}" alt="" class="w-full" loading="lazy">
                             </a>
                         {% endfor %}
 
@@ -33,7 +33,7 @@
                     {% for product in products %}
                         <div class="slider-Div product-card slick-slide">
                             <a href="{{ product.get_absolute_url }}">
-                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image" loading="lazy">
                                 <p class="product-card-title">{{ product.title }}</p>
                             </a>
                             <div class="flex items-center justify-center mb-4 quantityContainer">
@@ -115,7 +115,7 @@
                     {% for product in promoted_category_first.products.all %}
                         <div class="slider-Div product-card slick-slide">
                             <a href="{{ product.get_absolute_url }}">
-                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image" loading="lazy">
                                 <p class="product-card-title">{{ product.title }}</p>
                             </a>
                             <div class="flex items-center justify-center mb-4 quantityContainer">
@@ -149,7 +149,7 @@
                                class="flex items-center justify-center w-full h-full">
                                 {% if brand.image and brand.image.url %}
                                     <img src="{{ brand.image.url }}"
-                                         alt="" class="product-card-image w-full">
+                                         alt="" class="product-card-image w-full" loading="lazy">
                                     <p class="product-card-title overflow-ellipsis overflow-hidden">{{ brand.name }}</p>
                                 {% else %}
                                     <div class="flex items-center justify-center text-brand-secondary font-bold text-lg bg-white py-2 px-2 rounded-lg h-full w-full hover:bg-brand-tertiary hover:text-white">
@@ -202,7 +202,7 @@
                     {% for product in promoted_category_second.products.all %}
                         <div class="slider-Div product-card slick-slide">
                             <a href="{{ product.get_absolute_url }}">
-                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                                <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image" loading="lazy">
                                 <p class="product-card-title">{{ product.title }}</p>
                             </a>
                             <div class="flex items-center justify-center mb-4 quantityContainer">

@@ -77,7 +77,7 @@
                 {% for product in related_products %}
                     <div class="slider-Div product-card slick-slide">
                         <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image">
+                            <img src="{{ product.thumbnail.url }}" alt="" class="product-card-image" loading="lazy">
                             <p class="product-card-title">{{ product.title }}</p>
                         </a>
                         <div class="flex items-center justify-center mb-4 quantityContainer">

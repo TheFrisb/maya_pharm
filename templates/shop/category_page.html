@@ -10,7 +10,7 @@
                 {% for product in products %}
                     <div class="product-card">
                         <a href="{{ product.get_absolute_url }}"><img src="{{ product.thumbnail.url }}"
-                                                                      alt="" class="product-card-image"></a>
+                                                                      alt="" class="product-card-image" loading="lazy"></a>
                         <a class="product-card-title" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
                         <div class="flex items-center justify-center mb-4 quantityContainer">
                             <div class="text-black/60 p-1 bg-white rounded-tl-[50%] rounded-bl-[50%] border-2 border-r-0 quantityBtn quantityMinus cursor-pointer hover:bg-black hover:text-white">
